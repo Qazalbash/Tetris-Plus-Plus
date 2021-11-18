@@ -1,11 +1,14 @@
-#include "matrix.h"
+// #include "matrix.h"
 #include <iostream>
 using namespace std;
 
 class Block
 {
 private:
-    int block[4][4];
+    int blk[4][4] = {{0, 0, 0, 0},
+                     {0, 0, 0, 0},
+                     {0, 0, 0, 0},
+                     {0, 0, 0, 0}};
 
 public:
     void I();
@@ -20,4 +23,5 @@ public:
     void operator$();
 
     void show();
+    Block();
 };
