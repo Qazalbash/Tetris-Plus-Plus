@@ -1,5 +1,5 @@
-#include "block.h"
-#include <iostream>
+#include "block.hpp"
+
 void Block::I()
 {
     block = {{0, 0, 1, 0},
