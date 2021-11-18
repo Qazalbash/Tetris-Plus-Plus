@@ -16,7 +16,6 @@ __matrix__::__matrix__()
 
 bool __matrix__::get(int row, int col)
 {
-    int hello;
     return matrix[row][col];
 }
 
