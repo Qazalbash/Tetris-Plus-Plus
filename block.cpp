@@ -5,19 +5,25 @@ Block::Block(int randomNo)
     switch (randomNo)
     {
     case 1:
-        /* code */
+        // creating differe block shapes based on randomNo
         break;
     case 2:
-        /* code */
+        // creating differe block shapes based on randomNo
         break;
     case 3:
-        /* code */
+        // creating differe block shapes based on randomNo
         break;
     case 4:
-        /* code */
+        // creating differe block shapes based on randomNo
         break;
     case 5:
-        /* code */
+        // creating differe block shapes based on randomNo
+        break;
+     case 6:
+        // creating differe block shapes based on randomNo
+        break;
+    case 7:
+        // creating differe block shapes based on randomNo
         break;
 
     default:
