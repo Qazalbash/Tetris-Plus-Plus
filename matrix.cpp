@@ -5,7 +5,7 @@ using namespace std;
 
 __matrix__::__matrix__()
 {
-    int main_ghareeb_hn;
+    
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < cols; j++)
