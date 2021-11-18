@@ -19,24 +19,20 @@ Block::Block(int randomNo)
     case 5:
         /* code */
         break;
-    
+
     default:
         break;
     }
 }
 
-
 void Block::draw()
 {
-
 }
 
 void Block::fall()
 {
-
 }
 
 void Block::status()
 {
-
 }

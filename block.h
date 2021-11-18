@@ -1,15 +1,12 @@
 #include "matrix.h"
 
-
-class Block{
-    private:
+class Block
+{
+private:
     int xCord;
     int yCord;
-    
 
-
-
-    public:
+public:
     Block(int randomNo);
 
     void draw();
@@ -18,7 +15,4 @@ class Block{
 
     //debugging functions
     void status();
-
-
-
 };
