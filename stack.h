@@ -1,13 +1,13 @@
 #include <stdio.h>
-#include "constant.h"
+#include <constant.h>
 
 class __stack__
 {
 private:
-    bool stack[ROWS];
+    int stack[ROWS];
 
 public:
     bool pop();
-    void push();
+    void push(int, int);
     __stack__();
 };

@@ -1,2 +1,2 @@
-const int ROWS = 20;
-const int COLS = 10;
+#define ROWS 15
+#define COLS 15

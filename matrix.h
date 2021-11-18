@@ -1,7 +1,5 @@
 #include <stdio.h>
-
-#define ROWS 15
-#define COLS 15
+#include <constant.h>
 
 class __matrix__
 {
