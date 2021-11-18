@@ -3,16 +3,19 @@
 class Block
 {
 private:
-    int xCord;
-    int yCord;
+    int block[4][4];
 
 public:
-    Block(int randomNo);
+    void I();
+    void J();
+    void L();
+    void O();
+    void S();
+    void T();
+    void Z();
 
-    void draw();
+    void rotate();
+    void operator$();
 
-    void fall();
-
-    //debugging functions
-    void status();
+    void show();
 };

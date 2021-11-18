@@ -1,44 +1,73 @@
 #include "block.h"
-
-Block::Block(int randomNo)
+#include <iostream>
+void Block::I()
 {
-    switch (randomNo)
+    block = {{0, 0, 1, 0},
+             {0, 0, 1, 0},
+             {0, 0, 1, 0},
+             {0, 0, 1, 0}};
+}
+
+void Block::J()
+{
+    block = {{0, 0, 0, 0},
+             {0, 1, 0, 0},
+             {0, 1, 1, 1},
+             {0, 0, 0, 0}};
+}
+void Block::L()
+{
+    block = {{0, 0, 0, 0},
+             {0, 0, 0, 1},
+             {0, 1, 1, 1},
+             {0, 0, 0, 0}};
+}
+void Block::O()
+{
+    block = {{0, 0, 0, 0},
+             {0, 1, 1, 0},
+             {0, 1, 1, 0},
+             {0, 0, 0, 0}};
+}
+void Block::S()
+{
+    block = {{0, 0, 0, 0},
+             {0, 0, 1, 1},
+             {0, 1, 1, 0},
+             {0, 0, 0, 0}};
+}
+void Block::T()
+{
+    block = {{0, 0, 0, 0},
+             {0, 1, 0, 0},
+             {1, 1, 1, 0},
+             {0, 0, 0, 0}};
+}
+void Block::Z()
+{
+    block = {{0, 0, 0, 0},
+             {0, 1, 1, 0},
+             {0, 0, 1, 1},
+             {0, 0, 0, 0}};
+}
+
+void Block::operator$()
+{
+    int temporaryBlock[4][4];
+    for (int i = 0; i < 4; i++)
     {
-    case 1:
-        // creating differe block shapes based on randomNo
-        break;
-    case 2:
-        // creating differe block shapes based on randomNo
-        break;
-    case 3:
-        // creating differe block shapes based on randomNo
-        break;
-    case 4:
-        // creating differe block shapes based on randomNo
-        break;
-    case 5:
-        // creating differe block shapes based on randomNo
-        break;
-     case 6:
-        // creating differe block shapes based on randomNo
-        break;
-    case 7:
-        // creating differe block shapes based on randomNo
-        break;
-
-    default:
-        break;
+        for (int j = 0; j < 4; j++)
+        {
+            temporaryBlock[j][3 - i] = block[i][j];
+        }
     }
+    block = temporaryBlock;
 }
 
-void Block::draw()
+void Block::show()
 {
-}
-
-void Block::fall()
-{
-}
-
-void Block::status()
-{
+    cout << block[0][0] << block[0][1] << block[0][2] << block[0][4] << endl;
+    cout << block[1][0] << block[1][1] << block[1][2] << block[1][4] << endl;
+    cout << block[2][0] << block[2][1] << block[2][2] << block[2][4] << endl;
+    cout << block[3][0] << block[3][1] << block[3][2] << block[3][4] << endl;
 }
