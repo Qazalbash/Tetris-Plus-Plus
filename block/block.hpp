@@ -1,14 +1,14 @@
 // #include "matrix.h"
-#pragma once;
+// #pragma once;
 #include <iostream>
 using namespace std;
 
 class Block
 {
-    int block[4][4] = {{0, 0, 1, 0},
-                       {0, 0, 1, 0},
-                       {0, 0, 1, 0},
-                       {0, 0, 1, 0}};
+    const int block[4][4] = {{0, 0, 1, 0},
+                             {0, 0, 1, 0},
+                             {0, 0, 1, 0},
+                             {0, 0, 1, 0}};
 
 public:
     void I();

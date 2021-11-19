@@ -1,26 +1,26 @@
 #include "block.hpp"
 
-// Block::Block()
-// {
-//     block = {{0, 0, 1, 0},
-//              {0, 0, 1, 0},
-//              {0, 0, 1, 0},
-//              {0, 0, 1, 0}};
-// }
+Block::Block()
+{
+    // block = {{0, 0, 1, 0},
+    //          {0, 0, 1, 0},
+    //          {0, 0, 1, 0},
+    //          {0, 0, 1, 0}};
+}
 // {
 //     block =
 // }
 
 void Block::I()
 {
-    block[0][2] = 1;
-    block[1][2] = 1;
-    block[2][2] = 1;
-    block[3][2] = 1;
+    // block[0][2] = 1;
+    // block[1][2] = 1;
+    // block[2][2] = 1;
+    // block[3][2] = 1;
     // block = {{0, 0, 1, 0},
-    //        {0, 0, 1, 0},
-    //        {0, 0, 1, 0},
-    //        {0, 0, 1, 0}};
+    //          {0, 0, 1, 0},
+    //          {0, 0, 1, 0},
+    //          {0, 0, 1, 0}};
 }
 
 // void Block::J()
@@ -71,18 +71,26 @@ void Block::I()
 //            {0, 0, 0, 0}};
 // }
 
-// void Block::operator$()
-// {
-//     int temporaryBlock[4][4];
-//     for (int i = 0; i < 4; i++)
-//     {
-//         for (int j = 0; j < 4; j++)
-//         {
-//             temporaryBlock[j][3 - i] = block[i][j];
-//         }
-//     }
-//     block = temporaryBlock;
-// }
+void Block::operator$()
+{
+    int temporaryBlock[4][4];
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            temporaryBlock[j][3 - i] = block[i][j];
+        }
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+
+            block[i][j] = temporaryBlock[i][j];
+        }
+    }
+}
 
 void Block::show()
 {
