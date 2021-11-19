@@ -5,10 +5,11 @@ using namespace std;
 class Block
 {
 private:
-    int blk[4][4] = {{0, 0, 0, 0},
-                     {0, 0, 0, 0},
-                     {0, 0, 0, 0},
-                     {0, 0, 0, 0}};
+    int blk[4][4];
+    // int blk[4][4] = {{0, 0, 0, 0},
+    //                  {0, 0, 0, 0},
+    //                  {0, 0, 0, 0},
+    //                  {0, 0, 0, 0}};
 
 public:
     void I();
@@ -19,7 +20,6 @@ public:
     void T();
     void Z();
 
-    void rotate();
     void operator$();
 
     void show();
