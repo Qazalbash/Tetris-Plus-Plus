@@ -1,11 +1,10 @@
 #pragma once;
-#include "matrix.h"
-#include <vector>
+#include "matrix.hpp"
 using namespace std;
 
 __matrix__::__matrix__()
 {
-    
+
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < cols; j++)

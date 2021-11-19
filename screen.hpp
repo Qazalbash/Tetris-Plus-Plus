@@ -1,5 +1,5 @@
-#include <constant.h>
-#include <stack.h>
+#include "constant.hpp"
+#include "stack.hpp"
 
 class __screen__
 {
