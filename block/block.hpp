@@ -1,11 +1,8 @@
-// #include "matrix.h"
-// #pragma once;
 #include <iostream>
 using namespace std;
-
 class __block__
 {
-    int **block;
+    int **blk;
 
 public:
     void I();
@@ -19,5 +16,6 @@ public:
     void operator$();
 
     void show();
+    __block__(int **);
     __block__();
 };
