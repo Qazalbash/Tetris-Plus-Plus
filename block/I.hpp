@@ -1,6 +1,6 @@
 class I
 {
-    int frame[4][4];
+    int frame[][4];
 
 public:
     I();

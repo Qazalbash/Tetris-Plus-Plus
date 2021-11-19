@@ -5,10 +5,7 @@ using namespace std;
 
 class Block
 {
-    const int block[4][4] = {{0, 0, 1, 0},
-                             {0, 0, 1, 0},
-                             {0, 0, 1, 0},
-                             {0, 0, 1, 0}};
+    int block[][4];
 
 public:
     void I();
