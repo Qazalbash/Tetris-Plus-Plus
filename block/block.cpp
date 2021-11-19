@@ -1,77 +1,87 @@
 #include "block.hpp"
 
-Block::Block()
+__block__::__block__()
 {
-    block[4][4] = {{0, 0, 1, 0},
-                   {0, 0, 1, 0},
-                   {0, 0, 1, 0},
-                   {0, 0, 1, 0}};
-}
-// {
-//     block =
-// }
+    block = new int *[4];
+    block[0] = new int[4];
+    block[1] = new int[4];
+    block[2] = new int[4];
+    block[3] = new int[4];
 
-void Block::I()
-{
-    // block[0][2] = 1;
-    // block[1][2] = 1;
-    // block[2][2] = 1;
-    // block[3][2] = 1;
-    block[4][4] = {{0, 0, 1, 0},
-                   {0, 0, 1, 0},
-                   {0, 0, 1, 0},
-                   {0, 0, 1, 0}};
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            block[i][j] = 0;
+        }
+    }
 }
 
-// void Block::J()
-// {
-//     block = {{0, 0, 0, 0},
-//            {0, 1, 0, 0},
-//            {0, 1, 1, 1},
-//            {0, 0, 0, 0}};
-// }
+void __block__::I()
+{
+    block[0][2] = 1;
+    block[1][2] = 1;
+    block[2][2] = 1;
+    block[3][2] = 1;
+}
 
-// void Block::L()
-// {
-//     block = {{0, 0, 0, 0},
-//            {0, 0, 0, 1},
-//            {0, 1, 1, 1},
-//            {0, 0, 0, 0}};
-// }
+void __block__::J()
+{
+    block[1][1] = 1;
+    block[2][1] = 1;
+    block[2][2] = 1;
+    block[2][3] = 1;
+    // block = {{0, 0, 0, 0},
+    //          {0, 1, 0, 0},
+    //          {0, 1, 1, 1},
+    //          {0, 0, 0, 0}};
+}
 
-// void Block::O()
-// {
-//     block = {{0, 0, 0, 0},
-//            {0, 1, 1, 0},
-//            {0, 1, 1, 0},
-//            {0, 0, 0, 0}};
-// }
+void __block__::L()
+{
+    block[1][3] = 1;
+    block[2][1] = 1;
+    block[2][2] = 1;
+    block[2][3] = 1;
+    // block = {{0, 0, 0, 0},
+    //          {0, 0, 0, 1},
+    //          {0, 1, 1, 1},
+    //          {0, 0, 0, 0}};
+}
 
-// void Block::S()
-// {
-//     Block::block = {{0, 0, 0, 0},
-//                   {0, 0, 1, 1},
-//                   {0, 1, 1, 0},
-//                   {0, 0, 0, 0}};
-// }
+void __block__::O()
+{
+    block[1][1] = 1;
+    block[1][2] = 1;
+    block[2][1] = 1;
+    block[2][2] = 1;
+}
 
-// void Block::T()
-// {
-//     block = {{0, 0, 0, 0},
-//            {0, 1, 0, 0},
-//            {1, 1, 1, 0},
-//            {0, 0, 0, 0}};
-// }
+void __block__::S()
+{
+    block[1][2] = 1;
+    block[1][3] = 1;
+    block[2][1] = 1;
+    block[2][2] = 1;
+}
 
-// void Block::Z()
-// {
-//     block = {{0, 0, 0, 0},
-//            {0, 1, 1, 0},
-//            {0, 0, 1, 1},
-//            {0, 0, 0, 0}};
-// }
+void __block__::T()
+{
+    block[1][1] = 1;
+    block[2][0] = 1;
+    block[2][1] = 1;
+    block[2][2] = 1;
+}
 
-void Block::operator$()
+void __block__::Z()
+{
+    block[1][1] = 1;
+    block[1][2] = 1;
+    block[2][2] = 1;
+    block[2][3] = 1;
+}
+
+void __block__::operator$()
 {
     int temporaryBlock[4][4];
     for (int i = 0; i < 4; i++)
@@ -92,7 +102,7 @@ void Block::operator$()
     }
 }
 
-void Block::show()
+void __block__::show()
 {
     cout << block[0][0] << block[0][1] << block[0][2] << block[0][3] << endl;
     cout << block[1][0] << block[1][1] << block[1][2] << block[1][3] << endl;

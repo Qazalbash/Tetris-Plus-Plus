@@ -3,21 +3,21 @@
 #include <iostream>
 using namespace std;
 
-class Block
+class __block__
 {
-    int block[][] = new int[4][4];
+    int **block;
 
 public:
     void I();
-    // void J();
-    // void L();
-    // void O();
-    // void S();
-    // void T();
-    // void Z();
+    void J();
+    void L();
+    void O();
+    void S();
+    void T();
+    void Z();
 
     void operator$();
 
     void show();
-    Block();
+    __block__();
 };

@@ -4,12 +4,9 @@ using namespace std;
 
 int main()
 {
-    Block peice;
+    __block__ peice;
 
-    // peice.show();
     peice.I();
-    peice.show();
-    // peice;
     peice.show();
     return 0;
 }
