@@ -5,7 +5,7 @@ using namespace std;
 
 class Block
 {
-    int block[][4];
+    int block[][] = new int[4][4];
 
 public:
     void I();
