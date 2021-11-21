@@ -1,4 +1,6 @@
-#include "constant.hpp"
+#include "../constant.hpp"
+#include <iostream>
+using namespace std;
 
 class __stack__
 {
@@ -11,5 +13,6 @@ protected:
 public:
     void pop();
     void push(int, int);
+    void showStack();
     __stack__();
 };

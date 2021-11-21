@@ -2,7 +2,6 @@
 
 void __block__::I()
 {
-    cout << "I am in I" << endl;
     blk[0][2] = 1;
     blk[1][2] = 1;
     blk[2][2] = 1;
@@ -87,7 +86,6 @@ void __block__::show()
 
 __block__::__block__()
 {
-    cout << "I am in constructor" << endl;
     blk = new int *[4];
     blk[0] = new int[4];
     blk[1] = new int[4];
@@ -101,4 +99,7 @@ __block__::__block__()
             blk[i][j] = 0;
         }
     }
+
+    x = 3;
+    y = 19;
 }

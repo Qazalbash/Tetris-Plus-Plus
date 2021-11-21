@@ -30,3 +30,12 @@ void __stack__::push(int row, int value)
     stack[row] = value;
     top = row;
 }
+
+void __stack__::showStack()
+{
+    for (int i = 0; i < ROWS; i++)
+    {
+        cout << stack[i] << " ";
+    }
+    cout << endl;
+}

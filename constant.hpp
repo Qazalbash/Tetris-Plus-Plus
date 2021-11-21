@@ -1,2 +1,2 @@
-#define ROWS 15
-#define COLS 15
+#define ROWS 20
+#define COLS 10

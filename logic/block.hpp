@@ -2,7 +2,12 @@
 using namespace std;
 class __block__
 {
+private:
     int **blk;
+
+protected:
+    int x;
+    int y;
 
 public:
     void I();
