@@ -1,7 +1,14 @@
-#include "screen.hpp "
+#include "screen.hpp"
 
-void __screen__::update()
+void __screen__::update(__screen__ **tempScreen)
 {
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLS; j++)
+        {
+            screen[i][j] = tempScreen[i][j];
+        }
+    }
 }
 
 void __screen__::appear()
@@ -15,10 +22,11 @@ void __screen__::appear()
     for (int i = 0; i < COLS; i++)
     {
         cout << i << " ";
-        screen[i].showStack();
+        screen[i]->showStack();
     }
 }
 __screen__::__screen__()
 {
     cout << "------------Game Start------------" << endl;
+    screen = new __stack__ *[COLS];
 }

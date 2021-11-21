@@ -5,7 +5,7 @@ using namespace std;
 class __stack__
 {
 private:
-    int stack[ROWS];
+    int *stack[ROWS];
 
 protected:
     int top;
@@ -14,5 +14,6 @@ public:
     void pop();
     void push(int, int);
     void showStack();
+    int operator[](int);
     __stack__();
 };

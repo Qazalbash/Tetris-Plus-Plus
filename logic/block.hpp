@@ -5,11 +5,9 @@ class __block__
 private:
     int **blk;
 
-protected:
+public:
     int x;
     int y;
-
-public:
     void I();
     void J();
     void L();
