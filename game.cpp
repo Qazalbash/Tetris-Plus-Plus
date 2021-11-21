@@ -6,7 +6,7 @@ bool Game::init()
 {
 	//Initialization flag
 	bool success = true;
-
+	//chnage assadasd
 	//Initialize SDL
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
 	{
