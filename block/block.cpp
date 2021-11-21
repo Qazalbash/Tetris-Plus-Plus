@@ -59,12 +59,12 @@ void __block__::Z()
 
 void __block__::operator$()
 {
-    int temporaryBlock[4][4];
+    int *temporaryBlock[4][4];
     for (int i = 0; i < 4; i++)
     {
         for (int j = 0; j < 4; j++)
         {
-            temporaryBlock[j][3 - i] = blk[i][j];
+            *temporaryBlock[j][3 - i] = blk[i][j];
         }
     }
 
@@ -72,7 +72,7 @@ void __block__::operator$()
     {
         for (int j = 0; j < 4; j++)
         {
-            blk[i][j] = temporaryBlock[i][j];
+            blk[i][j] = *temporaryBlock[i][j];
         }
     }
 }
@@ -87,6 +87,7 @@ void __block__::show()
 
 __block__::__block__()
 {
+    cout << "I am in constructor" << endl;
     blk = new int *[4];
     blk[0] = new int[4];
     blk[1] = new int[4];
@@ -97,7 +98,7 @@ __block__::__block__()
     {
         for (int j = 0; j < 4; j++)
         {
-            blk[i][j] = 1;
+            blk[i][j] = 0;
         }
     }
 }
