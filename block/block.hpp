@@ -13,9 +13,8 @@ public:
     void T();
     void Z();
 
-    void operator$();
+    void operator~();
 
     void show();
-    __block__(int **);
     __block__();
 };

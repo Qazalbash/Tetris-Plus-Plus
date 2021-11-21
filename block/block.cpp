@@ -57,14 +57,14 @@ void __block__::Z()
     blk[2][3] = 1;
 }
 
-void __block__::operator$()
+void __block__::operator~()
 {
-    int *temporaryBlock[4][4];
+    int temporaryBlock[4][4];
     for (int i = 0; i < 4; i++)
     {
         for (int j = 0; j < 4; j++)
         {
-            *temporaryBlock[j][3 - i] = blk[i][j];
+            temporaryBlock[j][3 - i] = blk[i][j];
         }
     }
 
@@ -72,7 +72,7 @@ void __block__::operator$()
     {
         for (int j = 0; j < 4; j++)
         {
-            blk[i][j] = *temporaryBlock[i][j];
+            blk[i][j] = temporaryBlock[i][j];
         }
     }
 }

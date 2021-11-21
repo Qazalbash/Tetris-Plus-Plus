@@ -1,4 +1,4 @@
-#include "stack.h"
+#include "stack.hpp"
 
 __stack__::__stack__()
 {
@@ -8,7 +8,7 @@ __stack__::__stack__()
     }
 }
 
-bool __stack__::pop()
+int __stack__::pop()
 {
     int top = stack[-1];
     stack[-1] = 0;
