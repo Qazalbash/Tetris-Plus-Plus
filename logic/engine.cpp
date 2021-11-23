@@ -39,7 +39,7 @@ void __engine__::selectPeice()
 
 void __engine__::run()
 {
-    char direction = __engine__::control();
+    char direction = control();
     switch (direction)
     {
     case 'U':
@@ -61,8 +61,8 @@ void __engine__::run()
 
 __engine__::__engine__()
 {
-    cout << "Im in engine constructor" << endl;
-    playground = new __screen__;
-    tempPlayground = new __screen__;
-    tetromino = new __block__;
+    cout << "I'm in engine constructor" << endl;
+    // playground = new __screen__;
+    // tempPlayground = new __screen__;
+    // tetromino = new __block__;
 }

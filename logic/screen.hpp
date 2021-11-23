@@ -1,3 +1,4 @@
+#pragma once
 #include "../constant.hpp"
 #include "movement.cpp"
 #include <iostream>

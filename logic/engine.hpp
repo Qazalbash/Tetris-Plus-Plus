@@ -1,3 +1,4 @@
+#pragma once
 #include "screen.cpp"
 #include <iostream>
 #include <stdlib.h>
