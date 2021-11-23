@@ -1,6 +1,4 @@
-
 #include "../constant.hpp"
-// #include "movement.cpp"
 #include "stack.cpp"
 #include <iostream>
 using namespace std;

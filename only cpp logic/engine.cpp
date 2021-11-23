@@ -1,12 +1,11 @@
 #include "screen.cpp"
 #include "block.cpp"
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+// #include <cstdlib>
+// #include <ctime>
 using namespace std;
 
-class __engine__ : public __screen__, public __block__
+class __engine__ //: public __screen__, public __block__
 {
 public:
     __screen__ *playground;
@@ -23,7 +22,7 @@ public:
 
     void selectPeice()
     {
-        srand(time(NULL));
+        // srand((unsigned)time(0));
         int secretNumber = rand() % 7;
         switch (secretNumber)
         {
@@ -80,3 +79,19 @@ public:
         tetromino = new __block__;
     }
 };
+
+// int main()
+// {
+//     cout << "I am in main" << endl;
+//     __engine__ engine;
+//     cout << "I am in main" << endl;
+//     return 0;
+// }
+
+// int main()
+// {
+//     __block__ peice;
+//     peice.show();
+
+//     return 0;
+// }

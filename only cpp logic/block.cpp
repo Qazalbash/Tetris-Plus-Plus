@@ -114,3 +114,12 @@ public:
         y = 19;
     }
 };
+
+// int main()
+// {
+//     __block__ peice;
+//     peice.I();
+//     peice.show();
+
+//     return 0;
+// }
