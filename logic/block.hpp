@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+
 class __block__
 {
 private:

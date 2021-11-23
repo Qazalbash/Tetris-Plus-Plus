@@ -25,13 +25,13 @@ void __screen__::appear()
         screen[i].showStack();
     }
 }
+
 __screen__::__screen__()
 {
-    cout << "------------Game Start------------" << endl;
     screen = new __stack__[COLS];
 }
 
-__stack__ __screen__::operator[](int col)
+__stack__ __screen__::operator[](const int col)
 {
-    return this->screen[col];
+    return screen[col];
 }

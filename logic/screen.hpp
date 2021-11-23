@@ -12,6 +12,6 @@ private:
 public:
     void update(__screen__);
     void appear();
-    __stack__ operator[](int);
+    __stack__ operator[](const int);
     __screen__();
 };

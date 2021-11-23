@@ -4,11 +4,12 @@
 
 int main()
 {
-    // cout << "ajbsdabdskas" << endl;
     __engine__ server;
-    // server->control();
-    // (server->playground)->appear();
-    // server->appear();
+    // server.control();
+    server.selectPeice();
+    server.tetromino->show();
+    cout << endl;
+    ~*server.tetromino;
     server.tetromino->show();
     return 0;
 }
