@@ -1,8 +1,8 @@
-#include "screen.cpp"
+#include "engine.cpp"
 
 int main()
 {
-    __screen__ SCREEN;
-    SCREEN.appear();
+    __engine__ server;
+
     return 0;
 }

@@ -1,6 +1,6 @@
 #include "screen.hpp"
 
-void __screen__::update(__screen__ &tempScreen)
+void __screen__::update(__screen__ tempScreen)
 {
     for (int i = 0; i < ROWS; i++)
     {
