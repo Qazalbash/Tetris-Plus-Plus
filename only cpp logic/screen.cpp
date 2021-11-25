@@ -1,58 +1,64 @@
 #include "../constant.hpp"
-#include "stack.cpp"
+// #include "stack.cpp"
 #include <iostream>
+#include <stack>
 using namespace std;
 
 class __screen__ //: public __movement__
 {
 private:
-    __stack__ *screen;
+    stack < *screen;
 
 public:
     void update(__screen__ tempScreen)
     {
-        for (int screenRowArrow = 0; screenRowArrow < ROWS; screenRowArrow++)
+        for (int i = 0; i < ROWS; i++)
         {
-            screen[screenRowArrow] = tempScreen[screenRowArrow];
-            // for (int screenColArrow = 0; screenColArrow < 4; screenColArrow++)
-            // {
-            //     screen[screenRowArrow] = tempScreen[screenRowArrow];
-            // }
+            for (int j = 0; j < COLS; j++)
+            {
+                screen[i] = tempScreen[i];
+            }
         }
     }
 
     void appear()
     {
         cout << "  ";
-        for (int screenRowArrow = 0; screenRowArrow < ROWS; screenRowArrow++)
+        for (int i = 0; i < ROWS; i++)
         {
-            cout << screenRowArrow % 10 << " ";
+            cout << i % 10 << " ";
         }
         cout << endl;
-        for (int screenRowArrow = 0; screenRowArrow < ROWS; screenRowArrow++)
+        for (int i = 0; i < COLS; i++)
         {
-            cout << screenRowArrow << " ";
-            screen[screenRowArrow].showStack();
+            cout << i << " ";
+            //screen[i].showStack();
+            //cout << (screen[i]) << endl;
         }
     }
-    __stack__ operator[](const int col)
+    stack<int> operator[](const int col)
     {
         return screen[col];
     }
 
-    __screen__()
+    __screen__(int size)
     {
-        screen = new __stack__[COLS];
+        cout << "inside the consturc" << endl;
+        stack<int> screen;
     }
-
-    ~__screen__()
-    {
-        delete screen;
-    }
+    // __screen__(int a)
+    // {
+    //     cout << " int " << a << endl;
+    // }
 };
 
 int main()
 {
-    __screen__ *testScreen;
-    testScreen->appear();
+    cout << "start" << endl;
+    __screen__ testScreen(COLS);
+
+    //testScreen.appear();
+
+    cout << "end" << endl;
+    return 0;
 }

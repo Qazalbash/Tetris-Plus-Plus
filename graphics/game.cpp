@@ -1,12 +1,74 @@
 #include "game.hpp"
 #include "TetrisMania.hpp"
+#include <string>
+#include <vector>
+#include <fstream>
+#include <SDL_mixer.h>
+
+
+
 using namespace std;
+
+// Funciton used to draw new surface and map for Tetris mania. 
+void Game::blit(){
+	SDL_Surface *screen = SDL_GetWindowSurface(gWindow);
+		SDL_Surface* wallImage = NULL;
+	    SDL_Surface* foodImage = NULL;
+		SDL_Surface* pacmanImage = NULL;
+		// wallImage = SDL_LoadBMP( "wall.bmp" );
+		wallImage = IMG_Load( "wall.bmp" );
+			if(wallImage==NULL)
+    {
+        printf("Unable to run due to error: %s\n",SDL_GetError());
+    }
+		
+        // foodImage = SDL_LoadBMP( "point.bmp" );
+		pacmanImage =  IMG_Load("homepage.png");
+	
+		if(pacmanImage==NULL)
+    {
+        printf("Unable to run due to error: %s\n",SDL_GetError());
+    }
+        ifstream fin("mapa.txt", std::ios::in);
+		std::fstream file;
+		string path = "mapa.txt";
+		// Open the file and check if successful
+		file.open(path.c_str(), std::ios::in);
+
+		string line;
+
+		SDL_Rect srect= {0,0,25,25};
+		SDL_Rect drect = wallImage->clip_rect;
+		// SDL_Rect drectb = pacmanImage->clip_rect;
+		// SDL_Rect srectb= {0,0,1000,640};
+		// SDL_BlitSurface(pacmanImage, NULL, screen, &srectb );
+		int x = 0;
+		while (getline(file, line)) {
+			vector<char> chars(line.begin(), line.end());
+			for (unsigned int y = 0; y < chars.size(); y++){
+				cout<<drect.x<<" "<<drect.y<<endl;
+				switch (chars[y])
+					{
+						case 'x':
+							SDL_BlitSurface(wallImage, NULL, screen, &drect );
+							break;			
+					}
+				drect.x+=25;
+			}
+			drect.x=0;
+			drect.y+=25;
+			}
+			blit_called = true;
+			gTexture = SDL_CreateTextureFromSurface( gRenderer, screen);
+}
+
 
 bool Game::init()
 {
 	//Initialization flag
 	bool success = true;
-	//chnage assadasd
+	blit_called=false;
+
 	//Initialize SDL
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
 	{
@@ -67,14 +129,6 @@ bool Game::loadMedia(bool check)
 		assets = loadTexture("assets.png");
     	gTexture = loadTexture("background.png");
 	}
-	// else if (check){
-	// 	// SDL_DestroyTexture(assets);
-	// 	// assets=NULL;
-	// 	SDL_DestroyTexture(gTexture);
-	// 	cout<<"true running new"<<endl;
-	// 	// assets = loadTexture("background_sprite.png");
-	// 	gTexture = loadTexture("homepage.png");
-	// }
 	
 	if(assets==NULL || gTexture==NULL)
     {
@@ -129,7 +183,7 @@ SDL_Texture* Game::loadTexture( std::string path )
 }
 void Game::run( )
 {
-	bool quit;
+	bool quit=false;
 	SDL_Event e;
 
 	TetrisMania tetrismania(gRenderer, assets);
@@ -144,27 +198,42 @@ void Game::run( )
 			{
 				quit = true;
 			}
-
-			if(e.type == SDL_MOUSEBUTTONDOWN){
-			//this is a good location to add pigeon in linked list.
+			//Calling functions that are to be run on the click of the mouse button
+			else if(e.type == SDL_MOUSEBUTTONDOWN){
 				int xMouse, yMouse;
 				SDL_GetMouseState(&xMouse,&yMouse);
 				tetrismania.createObject(xMouse, yMouse);
+				if (xMouse>400 && xMouse<600 && yMouse>500 && yMouse<580) {
+					// gTexture = loadTexture("homepage.png");
+					blit();
+					tetrismania.screen_Setter(1);
+					
+				}
 			}
+
+			//Calling functions that are to be run depending on input from the keyboard. 
 			else if (e.type = SDL_KEYDOWN){
-				
+				if (e.key.keysym.sym== SDLK_SPACE){
 					tetrismania.rotateObject();
+				}
+				else if (e.key.keysym.sym== SDLK_RIGHT){
+					tetrismania.slideObject(1);
+				}
+				else if (e.key.keysym.sym== SDLK_LEFT){
+					tetrismania.slideObject(-1);
+				}
+				else if (e.key.keysym.sym== SDLK_DOWN){
+					tetrismania.slideObject(0);
+				}
 				
 			}
-			// else if (e.type =)
 		}
 
 		SDL_RenderClear(gRenderer); //removes everything from renderer
 		SDL_RenderCopy(gRenderer, gTexture, NULL, NULL);//Draws background to renderer
 		//***********************draw the objects here********************
-
+		
 		tetrismania.drawObjects();
-
 		//****************************************************************
     	SDL_RenderPresent(gRenderer); //displays the updated renderer
 

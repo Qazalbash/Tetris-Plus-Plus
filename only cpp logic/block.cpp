@@ -69,19 +69,19 @@ public:
     void operator~()
     {
         int temporaryBlock[4][4];
-        for (int blockRowArrow = 0; blockRowArrow < 4; blockRowArrow++)
+        for (int i = 0; i < 4; i++)
         {
-            for (int blockColArrow = 0; blockColArrow < 4; blockColArrow++)
+            for (int j = 0; j < 4; j++)
             {
-                temporaryBlock[blockColArrow][3 - blockRowArrow] = blk[blockRowArrow][blockColArrow];
+                temporaryBlock[j][3 - i] = blk[i][j];
             }
         }
 
-        for (int blockRowArrow = 0; blockRowArrow < 4; blockRowArrow++)
+        for (int i = 0; i < 4; i++)
         {
-            for (int blockColArrow = 0; blockColArrow < 4; blockColArrow++)
+            for (int j = 0; j < 4; j++)
             {
-                blk[blockRowArrow][blockColArrow] = temporaryBlock[blockRowArrow][blockColArrow];
+                blk[i][j] = temporaryBlock[i][j];
             }
         }
     }
@@ -102,33 +102,27 @@ public:
         blk[2] = new int[4];
         blk[3] = new int[4];
 
-        for (int blockRowArrow = 0; blockRowArrow < 4; blockRowArrow++)
+        for (int i = 0; i < 4; i++)
         {
-            for (int blockColArrow = 0; blockColArrow < 4; blockColArrow++)
+            for (int j = 0; j < 4; j++)
             {
-                blk[blockRowArrow][blockColArrow] = 0;
+                blk[i][j] = 0;
             }
         }
 
         x = 3;
         y = 19;
     }
-
-    ~__block__()
-    {
-        delete blk[0];
-        delete blk[1];
-        delete blk[2];
-        delete blk[3];
-        delete blk;
-    }
 };
 
-// int main()
-// {
-//     __block__ peice;
-//     peice.J();
-//     peice.show();
+int main()
+{
+    __block__ peice;
+    peice.I();
+    peice.show();
+    cout << endl;
+    ~peice;
+    peice.show();
 
-//     return 0;
-// }
+    return 0;
+}

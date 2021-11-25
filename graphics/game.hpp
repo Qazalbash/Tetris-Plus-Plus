@@ -8,6 +8,8 @@
 #include <time.h>
 #include "SDL_mixer.h"
 
+
+
 #pragma once
 
 class Game{
@@ -29,6 +31,8 @@ class Game{
 
 public:
     bool check=false;
+    bool blit_called;
+    void blit();
     bool init();
     bool loadMedia(bool check);
     void close();
