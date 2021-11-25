@@ -5,12 +5,12 @@
 #include <ctime>
 using namespace std;
 
-class __engine__ //: public __screen__, public __block__
+class __engine__
 {
 public:
-    __screen__ *playground;
-    __screen__ *tempPlayground;
-    __block__ *tetromino;
+    __screen__ playground;
+    __screen__ tempPlayground;
+    __block__ tetromino;
 
     char control()
     {
@@ -27,25 +27,25 @@ public:
         switch (secretNumber)
         {
         case 0:
-            tetromino->I();
+            tetromino.I();
             break;
         case 1:
-            tetromino->J();
+            tetromino.J();
             break;
         case 2:
-            tetromino->L();
+            tetromino.L();
             break;
         case 3:
-            tetromino->O();
+            tetromino.O();
             break;
         case 4:
-            tetromino->S();
+            tetromino.S();
             break;
         case 5:
-            tetromino->T();
+            tetromino.T();
             break;
         case 6:
-            tetromino->Z();
+            tetromino.Z();
             break;
         }
     }
@@ -56,49 +56,24 @@ public:
         switch (direction)
         {
         case 'U':
-            ~*tetromino;
+            ~tetromino;
             break;
         case 'D':
             break;
         case 'L':
-            tetromino->y -= 1;
+            tetromino.y -= 1;
             break;
         case 'R':
-            tetromino->y += 1;
+            tetromino.y += 1;
             break;
         default:
-            tetromino->x -= 1;
+            tetromino.x -= 1;
             break;
         }
     }
 
     __engine__()
     {
-        cout << "In constructor" << endl;
-        playground = new __screen__;
-        tempPlayground = new __screen__;
-        tetromino = new __block__;
-    }
-    ~__engine__()
-    {
-        delete playground;
-        delete tempPlayground;
-        delete tetromino;
+        selectPeice();
     }
 };
-
-// int main()
-// {
-//     cout << "I am in main" << endl;
-//     __engine__ engine;
-//     cout << "I am in main" << endl;
-//     return 0;
-// }
-
-// int main()
-// {
-//     __block__ peice;
-//     peice.show();
-
-//     return 0;
-// }

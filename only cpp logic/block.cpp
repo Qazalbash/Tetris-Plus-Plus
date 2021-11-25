@@ -12,6 +12,8 @@ public:
 
     void I()
     {
+        nullBlock();
+
         blk[0][2] = 1;
         blk[1][2] = 1;
         blk[2][2] = 1;
@@ -20,6 +22,8 @@ public:
 
     void J()
     {
+        nullBlock();
+
         blk[1][1] = 1;
         blk[2][1] = 1;
         blk[2][2] = 1;
@@ -28,6 +32,8 @@ public:
 
     void L()
     {
+        nullBlock();
+
         blk[1][3] = 1;
         blk[2][1] = 1;
         blk[2][2] = 1;
@@ -36,6 +42,8 @@ public:
 
     void O()
     {
+        nullBlock();
+
         blk[1][1] = 1;
         blk[1][2] = 1;
         blk[2][1] = 1;
@@ -44,6 +52,8 @@ public:
 
     void S()
     {
+        nullBlock();
+
         blk[1][2] = 1;
         blk[1][3] = 1;
         blk[2][1] = 1;
@@ -52,6 +62,8 @@ public:
 
     void T()
     {
+        nullBlock();
+
         blk[1][1] = 1;
         blk[2][0] = 1;
         blk[2][1] = 1;
@@ -60,6 +72,8 @@ public:
 
     void Z()
     {
+        nullBlock();
+
         blk[1][1] = 1;
         blk[1][2] = 1;
         blk[2][2] = 1;
@@ -69,19 +83,19 @@ public:
     void operator~()
     {
         int temporaryBlock[4][4];
-        for (int i = 0; i < 4; i++)
+        for (int blockRowArrow = 0; blockRowArrow < 4; blockRowArrow++)
         {
-            for (int j = 0; j < 4; j++)
+            for (int blockColArrow = 0; blockColArrow < 4; blockColArrow++)
             {
-                temporaryBlock[j][3 - i] = blk[i][j];
+                temporaryBlock[blockColArrow][3 - blockRowArrow] = blk[blockRowArrow][blockColArrow];
             }
         }
 
-        for (int i = 0; i < 4; i++)
+        for (int blockRowArrow = 0; blockRowArrow < 4; blockRowArrow++)
         {
-            for (int j = 0; j < 4; j++)
+            for (int blockColArrow = 0; blockColArrow < 4; blockColArrow++)
             {
-                blk[i][j] = temporaryBlock[i][j];
+                blk[blockRowArrow][blockColArrow] = temporaryBlock[blockRowArrow][blockColArrow];
             }
         }
     }
@@ -94,6 +108,17 @@ public:
         cout << blk[3][0] << " " << blk[3][1] << " " << blk[3][2] << " " << blk[3][3] << endl;
     }
 
+    void nullBlock()
+    {
+        for (int blockRowArrow = 0; blockRowArrow < 4; blockRowArrow++)
+        {
+            for (int blockColArrow = 0; blockColArrow < 4; blockColArrow++)
+            {
+                blk[blockRowArrow][blockColArrow] = 0;
+            }
+        }
+    }
+
     __block__()
     {
         blk = new int *[4];
@@ -102,27 +127,21 @@ public:
         blk[2] = new int[4];
         blk[3] = new int[4];
 
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                blk[i][j] = 0;
-            }
-        }
+        nullBlock();
 
         x = 3;
         y = 19;
     }
 };
 
-int main()
-{
-    __block__ peice;
-    peice.I();
-    peice.show();
-    cout << endl;
-    ~peice;
-    peice.show();
+// int main()
+// {
+//     __block__ peice;
+//     peice.I();
+//     peice.show();
+//     cout << endl;
+//     ~peice;
+//     peice.show();
 
-    return 0;
-}
+//     return 0;
+// }

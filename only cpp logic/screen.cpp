@@ -12,27 +12,28 @@ private:
 public:
     void update(__screen__ tempScreen)
     {
-        for (int i = 0; i < ROWS; i++)
+        for (int tempScreenRowArrow = 0; tempScreenRowArrow < ROWS; tempScreenRowArrow++)
         {
-            for (int j = 0; j < COLS; j++)
-            {
-                screen[i] = tempScreen[i];
-            }
+            screen[tempScreenRowArrow] = tempScreen[tempScreenRowArrow];
         }
     }
 
     void appear()
     {
         cout << "  ";
-        for (int i = 0; i < ROWS; i++)
+        for (int arrow = 0; arrow < COLS; arrow++)
         {
-            cout << i % 10 << " ";
+            cout << arrow % 10 << " ";
         }
         cout << endl;
-        for (int i = 0; i < COLS; i++)
+        for (int screenRowArrow = 0; screenRowArrow < ROWS; screenRowArrow++)
         {
-            cout << i << " ";
-            cout << screen[i][j] << endl;
+            cout << screenRowArrow << " ";
+            for (int screenColArrow = 0; screenColArrow < COLS; screenColArrow++)
+            {
+                cout << screen[screenRowArrow][screenColArrow] << " ";
+            }
+            cout << endl;
         }
     }
 
@@ -48,18 +49,13 @@ public:
         {
             screen[screenArrow] = new int[COLS];
         }
+
+        for (int screenRowArrow = 0; screenRowArrow < ROWS; screenRowArrow++)
+        {
+            for (int screenColArrow = 0; screenColArrow < COLS; screenColArrow++)
+            {
+                screen[screenRowArrow][screenColArrow] = 0;
+            }
+        }
     }
-    // __screen__(int a)
-    // {
-    //     cout << " int " << a << endl;
-    // }
 };
-
-int main()
-{
-    cout << "start" << endl;
-    __screen__ testScreen;
-
-    cout << "end" << endl;
-    return 0;
-}
