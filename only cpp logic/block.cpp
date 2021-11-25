@@ -115,11 +115,14 @@ public:
     }
 };
 
-// int main()
-// {
-//     __block__ peice;
-//     peice.I();
-//     peice.show();
+int main()
+{
+    __block__ peice;
+    peice.I();
+    peice.show();
+    cout << endl;
+    ~peice;
+    peice.show();
 
-//     return 0;
-// }
+    return 0;
+}
