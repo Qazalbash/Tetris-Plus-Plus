@@ -5,7 +5,7 @@
 #include <ctime>
 using namespace std;
 
-class __engine__ //: public __screen__, public __block__
+class __engine__ : public __screen__, public __block__
 {
 public:
     __screen__ *playground;
@@ -78,6 +78,7 @@ public:
         playground = new __screen__;
         tempPlayground = new __screen__;
         tetromino = new __block__;
+        cout << "In end of constructor" << endl;
     }
     ~__engine__()
     {

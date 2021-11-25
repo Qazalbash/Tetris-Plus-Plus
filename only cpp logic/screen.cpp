@@ -11,27 +11,28 @@ private:
 public:
     void update(__screen__ tempScreen)
     {
-        for (int i = 0; i < ROWS; i++)
+        for (int screenRowArrow = 0; screenRowArrow < ROWS; screenRowArrow++)
         {
-            for (int j = 0; j < COLS; j++)
-            {
-                screen[i] = tempScreen[i];
-            }
+            screen[screenRowArrow] = tempScreen[screenRowArrow];
+            // for (int screenColArrow = 0; screenColArrow < 4; screenColArrow++)
+            // {
+            //     screen[screenRowArrow] = tempScreen[screenRowArrow];
+            // }
         }
     }
 
     void appear()
     {
         cout << "  ";
-        for (int i = 0; i < ROWS; i++)
+        for (int screenRowArrow = 0; screenRowArrow < ROWS; screenRowArrow++)
         {
-            cout << i % 10 << " ";
+            cout << screenRowArrow % 10 << " ";
         }
         cout << endl;
-        for (int i = 0; i < COLS; i++)
+        for (int screenRowArrow = 0; screenRowArrow < ROWS; screenRowArrow++)
         {
-            cout << i << " ";
-            screen[i].showStack();
+            cout << screenRowArrow << " ";
+            screen[screenRowArrow].showStack();
         }
     }
     __stack__ operator[](const int col)
@@ -43,4 +44,15 @@ public:
     {
         screen = new __stack__[COLS];
     }
+
+    ~__screen__()
+    {
+        delete screen;
+    }
 };
+
+int main()
+{
+    __screen__ *testScreen;
+    testScreen->appear();
+}
