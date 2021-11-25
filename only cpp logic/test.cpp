@@ -17,11 +17,3 @@ int main()
 
     return 0;
 }
-
-// int main()
-// {
-//     __block__ peice;
-//     peice.show();
-
-//     return 0;
-// }

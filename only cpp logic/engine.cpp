@@ -1,8 +1,8 @@
 #include "screen.cpp"
 #include "block.cpp"
 #include <iostream>
-// #include <cstdlib>
-// #include <ctime>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 class __engine__ //: public __screen__, public __block__
@@ -74,9 +74,16 @@ public:
 
     __engine__()
     {
+        cout << "In constructor" << endl;
         playground = new __screen__;
         tempPlayground = new __screen__;
         tetromino = new __block__;
+    }
+    ~__engine__()
+    {
+        delete playground;
+        delete tempPlayground;
+        delete tetromino;
     }
 };
 
