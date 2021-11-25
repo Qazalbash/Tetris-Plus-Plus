@@ -35,9 +35,9 @@ public:
 
     void showStack()
     {
-        for (int stackArrow = 0; stackArrow < ROWS; stackArrow++)
+        for (int i = 0; i < ROWS; i++)
         {
-            cout << *(stack + stackArrow) << " ";
+            cout << stack[i] << " ";
         }
         cout << endl;
     }
@@ -49,24 +49,19 @@ public:
 
     void operator=(__stack__ tempStack)
     {
-        for (int stackArrow = 0; stackArrow < ROWS; stackArrow++)
+        for (int i = 0; i < ROWS; i++)
         {
-            stack[stackArrow] = tempStack[stackArrow];
+            stack[i] = tempStack[i];
         }
     }
 
     __stack__()
     {
         stack = new int[COLS];
-        for (int stackArrow = 0; stackArrow < ROWS; stackArrow++)
+        for (int i = 0; i < ROWS; i++)
         {
-            stack[stackArrow] = 0;
+            stack[i] = 0;
         }
         top = -1;
-    }
-
-    ~__stack__()
-    {
-        delete stack;
     }
 };
