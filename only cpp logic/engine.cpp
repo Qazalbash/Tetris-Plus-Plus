@@ -22,7 +22,7 @@ public:
 
     void selectPeice()
     {
-        // srand((unsigned)time(0));
+        srand((unsigned)time(0));
         int secretNumber = rand() % 7;
         switch (secretNumber)
         {
