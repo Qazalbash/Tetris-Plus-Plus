@@ -3,7 +3,7 @@ using namespace std;
 
 class __block__
 {
-private:
+protected:
     int **blk;
 
     void nullBlock()
@@ -20,7 +20,6 @@ private:
 public:
     int x;
     int y;
-
     void I()
     {
         nullBlock();
@@ -127,12 +126,12 @@ public:
 
     __block__()
     {
-        blk = new int *[5];
-        blk[0] = new int[5];
-        blk[1] = new int[5];
-        blk[2] = new int[5];
-        blk[3] = new int[5];
-        blk[4] = new int[5];
+        // blk = new int *[5];
+        // blk[0] = new int[5];
+        // blk[1] = new int[5];
+        // blk[2] = new int[5];
+        // blk[3] = new int[5];
+        // blk[4] = new int[5];
 
         nullBlock();
 
@@ -141,18 +140,157 @@ public:
     }
 };
 
-// int main()
-// {
-//     __block__ peice;
-//     peice.O();
-//     peice.show();
-//     cout << endl;
-//     ~peice;
-//     peice.show();
-//     cout << endl;
-//     ~peice;
-//     peice.show();
-//     cout << endl;
-//     ~peice;
-//     peice.show();
-// }
+struct topLeft
+{
+    int x;
+    int y;
+
+    topLeft(int xx, int yy) : x(xx), y(yy) {}
+};
+
+class I : public __block__
+{
+private:
+    int x;
+    int y;
+    int xlength;
+    int ylength;
+
+public:
+    void rotate() {}
+    I()
+    {
+        blk = new int *[4];
+        blk[0] = new int[1];
+        blk[1] = new int[1];
+        blk[2] = new int[1];
+        blk[3] = new int[1];
+
+        blk[0][0] = 1;
+        blk[1][0] = 1;
+        blk[2][0] = 1;
+        blk[3][0] = 1;
+
+        xlength = 1;
+        ylength = 4;
+    }
+    ~I()
+    {
+        delete[] blk;
+    }
+};
+
+class J : public __block__
+{
+private:
+    int x;
+    int y;
+    int xlength;
+    int ylength;
+
+public:
+    void rotate() {}
+
+    J()
+    {
+        blk = new int *[3];
+        blk[0] = new int[2];
+        blk[1] = new int[2];
+        blk[2] = new int[2];
+
+        blk[0][0] = 0;
+        blk[0][1] = 1;
+        blk[1][0] = 0;
+        blk[1][1] = 1;
+        blk[2][0] = 1;
+        blk[2][1] = 1;
+
+        xlength = 2;
+        ylength = 3;
+    }
+
+    ~J()
+    {
+        delete[] blk;
+    }
+};
+class L : public __block__
+{
+private:
+    int x;
+    int y;
+    int xlength;
+    int ylength;
+
+public:
+    void rotate() {}
+    L() {}
+    ~L()
+    {
+        delete[] blk;
+    }
+};
+class O : public __block__
+{
+private:
+    int x;
+    int y;
+    int xlength;
+    int ylength;
+
+public:
+    void rotate() {}
+    O() {}
+    ~O()
+    {
+        delete[] blk;
+    }
+};
+class S : public __block__
+{
+private:
+    int x;
+    int y;
+    int xlength;
+    int ylength;
+
+public:
+    void rotate() {}
+    S() {}
+    ~S()
+    {
+        delete[] blk;
+    }
+};
+class T : public __block__
+{
+private:
+    int x;
+    int y;
+    int xlength;
+    int ylength;
+
+public:
+    void rotate() {}
+    T() {}
+    ~T()
+    {
+        delete[] blk;
+    }
+};
+class Z : public __block__
+{
+private:
+    int x;
+    int y;
+    int xlength;
+    int ylength;
+
+public:
+    void rotate() {}
+    Z() {}
+    ~Z()
+    {
+        delete[] blk;
+    }
+};

@@ -10,7 +10,7 @@ int main()
     {
         server.renderBlock(server.tetromino.x, server.tetromino.y);
 
-        (server.tempPlayground).appear();
+        (server.landed).appear();
 
         server.run();
     }

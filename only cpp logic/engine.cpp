@@ -9,7 +9,7 @@ class __engine__
 {
 public:
     __screen__ playground;
-    __screen__ tempPlayground;
+    __screen__ landed;
     __block__ tetromino;
     int speed;
     int score;
@@ -61,18 +61,18 @@ public:
             ~tetromino;
             break;
         case 'D':
-            tetromino.x -= 1;
+            tetromino.x += 1;
             break;
         case 'L':
             tetromino.y -= 1;
-            tetromino.x -= 1;
+            tetromino.x += 1;
             break;
         case 'R':
             tetromino.y += 1;
-            tetromino.x -= 1;
+            tetromino.x += 1;
             break;
         default:
-            tetromino.x -= 1;
+            tetromino.x += 1;
             break;
         }
     }
@@ -87,9 +87,15 @@ public:
         score += speed * 100;
     }
 
-    // bool wallCollision()
-    // {
-    // }
+    bool wallCollision(bool rightWall = false, bool leftWall = false, int rightColumn = 0, int leftColumn = 4)
+    {
+        if (rightWall)
+        {
+            for (int wallCollisionRowArrow = 0; wallCollisionRowArrow < 5; wallCollisionRowArrow++)
+            {
+                        }
+        }
+    }
 
     // bool blockCollision()
     // {
@@ -101,7 +107,7 @@ public:
         {
             for (int renderBlockColArrow = yCord; renderBlockColArrow < yCord + 5; renderBlockColArrow++)
             {
-                tempPlayground[renderBlockRowArrow][renderBlockColArrow] = tetromino[renderBlockRowArrow - xCord][renderBlockColArrow - yCord];
+                landed[renderBlockRowArrow][renderBlockColArrow] = tetromino[renderBlockRowArrow - xCord][renderBlockColArrow - yCord];
             }
         }
     }
