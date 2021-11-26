@@ -13,6 +13,7 @@ public:
     __block__ tetromino;
     int speed;
     int score;
+
     char control()
     {
         char output;
@@ -60,12 +61,15 @@ public:
             ~tetromino;
             break;
         case 'D':
+            tetromino.x -= 1;
             break;
         case 'L':
             tetromino.y -= 1;
+            tetromino.x -= 1;
             break;
         case 'R':
             tetromino.y += 1;
+            tetromino.x -= 1;
             break;
         default:
             tetromino.x -= 1;
@@ -73,22 +77,33 @@ public:
         }
     }
 
-    int increaseSpeed()
+    void increaseSpeed()
     {
         speed *= 1.01;
     }
 
-    int increaseScore()
+    void increaseScore()
     {
         score += speed * 100;
     }
 
-    bool wallCollision()
-    {
-    }
+    // bool wallCollision()
+    // {
+    // }
 
-    bool blockCollision()
+    // bool blockCollision()
+    // {
+    // }
+
+    void renderBlock(int xCord, int yCord)
     {
+        for (int renderBlockRowArrow = xCord; renderBlockRowArrow < xCord + 5; renderBlockRowArrow++)
+        {
+            for (int renderBlockColArrow = yCord; renderBlockColArrow < yCord + 5; renderBlockColArrow++)
+            {
+                tempPlayground[renderBlockRowArrow][renderBlockColArrow] = tetromino[renderBlockRowArrow - xCord][renderBlockColArrow - yCord];
+            }
+        }
     }
 
     __engine__()

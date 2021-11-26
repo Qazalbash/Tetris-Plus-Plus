@@ -75,10 +75,10 @@ public:
     {
         nullBlock();
 
-        blk[1][1] = 1;
-        blk[2][0] = 1;
+        blk[1][2] = 1;
         blk[2][1] = 1;
         blk[2][2] = 1;
+        blk[2][3] = 1;
     }
 
     void Z()
@@ -120,6 +120,11 @@ public:
         cout << blk[4][0] << " " << blk[4][1] << " " << blk[4][2] << " " << blk[4][3] << " " << blk[4][4] << endl;
     }
 
+    int *operator[](int x)
+    {
+        return blk[x];
+    }
+
     __block__()
     {
         blk = new int *[5];
@@ -132,22 +137,22 @@ public:
         nullBlock();
 
         x = 0;
-        y = 3;
+        y = 2;
     }
 };
 
-int main()
-{
-    __block__ peice;
-    peice.Z();
-    peice.show();
-    cout << endl;
-    ~peice;
-    peice.show();
-    cout << endl;
-    ~peice;
-    peice.show();
-    cout << endl;
-    ~peice;
-    peice.show();
-}
+// int main()
+// {
+//     __block__ peice;
+//     peice.O();
+//     peice.show();
+//     cout << endl;
+//     ~peice;
+//     peice.show();
+//     cout << endl;
+//     ~peice;
+//     peice.show();
+//     cout << endl;
+//     ~peice;
+//     peice.show();
+// }

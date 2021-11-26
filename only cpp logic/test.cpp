@@ -6,7 +6,14 @@ int main()
 {
     __engine__ server;
 
-    (server.playground).appear();
+    while (true)
+    {
+        server.renderBlock(server.tetromino.x, server.tetromino.y);
+
+        (server.tempPlayground).appear();
+
+        server.run();
+    }
 
     return 0;
 }
