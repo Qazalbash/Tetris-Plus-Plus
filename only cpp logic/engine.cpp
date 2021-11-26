@@ -11,7 +11,8 @@ public:
     __screen__ playground;
     __screen__ tempPlayground;
     __block__ tetromino;
-
+    int speed;
+    int score;
     char control()
     {
         char output;
@@ -72,8 +73,28 @@ public:
         }
     }
 
+    int increaseSpeed()
+    {
+        speed *= 1.01;
+    }
+
+    int increaseScore()
+    {
+        score += speed * 100;
+    }
+
+    bool wallCollision()
+    {
+    }
+
+    bool blockCollision()
+    {
+    }
+
     __engine__()
     {
+        score = 0;
+        speed = 1;
         selectPeice();
     }
 };

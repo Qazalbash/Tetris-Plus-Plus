@@ -6,6 +6,17 @@ class __block__
 private:
     int **blk;
 
+    void nullBlock()
+    {
+        for (int blockRowArrow = 0; blockRowArrow < 4; blockRowArrow++)
+        {
+            for (int blockColArrow = 0; blockColArrow < 4; blockColArrow++)
+            {
+                blk[blockRowArrow][blockColArrow] = 0;
+            }
+        }
+    }
+
 public:
     int x;
     int y;
@@ -108,17 +119,6 @@ public:
         cout << blk[3][0] << " " << blk[3][1] << " " << blk[3][2] << " " << blk[3][3] << endl;
     }
 
-    void nullBlock()
-    {
-        for (int blockRowArrow = 0; blockRowArrow < 4; blockRowArrow++)
-        {
-            for (int blockColArrow = 0; blockColArrow < 4; blockColArrow++)
-            {
-                blk[blockRowArrow][blockColArrow] = 0;
-            }
-        }
-    }
-
     __block__()
     {
         blk = new int *[4];
@@ -129,19 +129,7 @@ public:
 
         nullBlock();
 
-        x = 3;
-        y = 19;
+        x = 0;
+        y = 3;
     }
 };
-
-// int main()
-// {
-//     __block__ peice;
-//     peice.I();
-//     peice.show();
-//     cout << endl;
-//     ~peice;
-//     peice.show();
-
-//     return 0;
-// }
