@@ -6,6 +6,11 @@ class __block__
 protected:
     int **blk;
 
+    int xlength;
+    int ylength;
+
+    int rotationNumber = 0;
+
     void nullBlock()
     {
         for (int blockRowArrow = 0; blockRowArrow < 5; blockRowArrow++)
@@ -126,13 +131,6 @@ public:
 
     __block__()
     {
-        // blk = new int *[5];
-        // blk[0] = new int[5];
-        // blk[1] = new int[5];
-        // blk[2] = new int[5];
-        // blk[3] = new int[5];
-        // blk[4] = new int[5];
-
         nullBlock();
 
         x = 0;
@@ -140,25 +138,11 @@ public:
     }
 };
 
-struct topLeft
-{
-    int x;
-    int y;
-
-    topLeft(int xx, int yy) : x(xx), y(yy) {}
-};
-
 class I : public __block__
 {
 private:
-    int x;
-    int y;
-    int xlength;
-    int ylength;
-
 public:
-    void rotate() {}
-    I()
+    void definition0()
     {
         blk = new int *[4];
         blk[0] = new int[1];
@@ -174,24 +158,48 @@ public:
         xlength = 1;
         ylength = 4;
     }
-    ~I()
+
+    void definition1()
     {
-        delete[] blk;
+        blk = new int *[1];
+        blk[0] = new int[4];
+
+        blk[0][0] = 1;
+        blk[0][1] = 1;
+        blk[0][2] = 1;
+        blk[0][3] = 1;
+
+        xlength = 4;
+        ylength = 1;
     }
+
+    void rotate()
+    {
+        if (rotationNumber == 1)
+        {
+            delete[] blk;
+            definition0();
+            rotationNumber = 1;
+        }
+
+        else
+        {
+            delete[] blk;
+            definition1();
+            rotationNumber = 0;
+        }
+    }
+
+    I() { definition0(); }
+
+    ~I() { delete[] blk; }
 };
 
 class J : public __block__
 {
-private:
-    int x;
-    int y;
-    int xlength;
-    int ylength;
 
 public:
-    void rotate() {}
-
-    J()
+    void definition0()
     {
         blk = new int *[3];
         blk[0] = new int[2];
@@ -209,88 +217,441 @@ public:
         ylength = 3;
     }
 
-    ~J()
+    void definition1()
     {
-        delete[] blk;
+        blk = new int *[2];
+        blk[0] = new int[3];
+        blk[1] = new int[3];
+
+        blk[0][0] = 1;
+        blk[0][1] = 0;
+        blk[0][2] = 0;
+        blk[1][0] = 1;
+        blk[1][1] = 1;
+        blk[1][2] = 1;
+
+        xlength = 3;
+        ylength = 2;
     }
+
+    void definition2()
+    {
+        blk = new int *[3];
+        blk[0] = new int[2];
+        blk[1] = new int[2];
+        blk[2] = new int[2];
+
+        blk[0][0] = 1;
+        blk[0][1] = 1;
+        blk[1][0] = 1;
+        blk[1][1] = 0;
+        blk[2][0] = 1;
+        blk[2][1] = 0;
+
+        xlength = 2;
+        ylength = 3;
+    }
+
+    void definition3()
+    {
+        blk = new int *[2];
+        blk[0] = new int[3];
+        blk[1] = new int[3];
+
+        blk[0][0] = 1;
+        blk[0][1] = 1;
+        blk[0][2] = 1;
+        blk[1][0] = 0;
+        blk[1][1] = 0;
+        blk[1][2] = 1;
+
+        xlength = 3;
+        ylength = 2;
+    }
+
+    void rotate()
+    {
+        switch (rotationNumber)
+        {
+        case 0:
+            definition1();
+            rotationNumber = 1;
+            break;
+
+        case 1:
+            definition2();
+            rotationNumber = 2;
+            break;
+
+        case 2:
+            definition3();
+            rotationNumber = 3;
+            break;
+
+        case 3:
+            definition0();
+            rotationNumber = 0;
+            break;
+        }
+    }
+
+    J() { definition0(); }
+
+    ~J() { delete[] blk; }
 };
+
 class L : public __block__
 {
-private:
-    int x;
-    int y;
-    int xlength;
-    int ylength;
 
 public:
-    void rotate() {}
-    L() {}
-    ~L()
+    void definition0()
     {
-        delete[] blk;
+        blk = new int *[3];
+        blk[0] = new int[2];
+        blk[1] = new int[2];
+        blk[2] = new int[2];
+
+        blk[0][0] = 1;
+        blk[0][1] = 0;
+        blk[1][0] = 1;
+        blk[1][1] = 0;
+        blk[2][0] = 1;
+        blk[2][1] = 1;
+
+        xlength = 2;
+        ylength = 3;
     }
+
+    void definition1()
+    {
+        blk = new int *[2];
+        blk[0] = new int[3];
+        blk[1] = new int[3];
+
+        blk[0][0] = 1;
+        blk[0][1] = 0;
+        blk[0][2] = 0;
+        blk[1][0] = 1;
+        blk[1][1] = 1;
+        blk[1][2] = 1;
+
+        xlength = 3;
+        ylength = 2;
+    }
+
+    void definition2()
+    {
+        blk = new int *[3];
+        blk[0] = new int[2];
+        blk[1] = new int[2];
+        blk[2] = new int[2];
+
+        blk[0][0] = 1;
+        blk[0][1] = 1;
+        blk[1][0] = 0;
+        blk[1][1] = 1;
+        blk[2][0] = 0;
+        blk[2][1] = 1;
+
+        xlength = 2;
+        ylength = 3;
+    }
+
+    void definition3()
+    {
+        blk = new int *[2];
+        blk[0] = new int[3];
+        blk[1] = new int[3];
+
+        blk[0][0] = 0;
+        blk[0][1] = 0;
+        blk[0][2] = 1;
+        blk[1][0] = 1;
+        blk[1][1] = 1;
+        blk[1][2] = 1;
+
+        xlength = 3;
+        ylength = 2;
+    }
+
+    void rotate()
+    {
+        switch (rotationNumber)
+        {
+        case 0:
+            definition1();
+            rotationNumber = 1;
+            break;
+
+        case 1:
+            definition2();
+            rotationNumber = 2;
+            break;
+
+        case 2:
+            definition3();
+            rotationNumber = 3;
+            break;
+
+        case 3:
+            definition0();
+            rotationNumber = 0;
+            break;
+        }
+    }
+
+    L() { definition0(); }
+
+    ~L() { delete[] blk; }
 };
+
 class O : public __block__
 {
-private:
-    int x;
-    int y;
-    int xlength;
-    int ylength;
 
 public:
     void rotate() {}
-    O() {}
-    ~O()
+
+    O()
     {
-        delete[] blk;
+        blk = new int *[2];
+        blk[0] = new int[2];
+        blk[1] = new int[2];
+
+        blk[0][0] = 1;
+        blk[0][1] = 1;
+        blk[1][0] = 1;
+        blk[1][1] = 1;
+
+        xlength = 2;
+        ylength = 2;
     }
+
+    ~O() { delete[] blk; }
 };
+
 class S : public __block__
 {
-private:
-    int x;
-    int y;
-    int xlength;
-    int ylength;
 
 public:
-    void rotate() {}
-    S() {}
-    ~S()
+    void definition0()
     {
-        delete[] blk;
+        blk = new int *[2];
+        blk[0] = new int[3];
+        blk[1] = new int[3];
+
+        blk[0][0] = 0;
+        blk[0][1] = 1;
+        blk[0][2] = 1;
+        blk[1][0] = 1;
+        blk[1][1] = 1;
+        blk[1][2] = 0;
+
+        xlength = 3;
+        ylength = 2;
     }
+
+    void definition1()
+    {
+        blk = new int *[3];
+        blk[0] = new int[2];
+        blk[1] = new int[2];
+        blk[2] = new int[2];
+
+        blk[0][0] = 1;
+        blk[0][1] = 0;
+        blk[1][0] = 1;
+        blk[1][1] = 1;
+        blk[2][0] = 0;
+        blk[2][1] = 1;
+
+        xlength = 2;
+        ylength = 3;
+    }
+
+    void rotate()
+    {
+        if (rotationNumber == 1)
+        {
+            delete[] blk;
+            definition0();
+            rotationNumber = 1;
+        }
+
+        else
+        {
+            delete[] blk;
+            definition1();
+            rotationNumber = 0;
+        }
+    }
+
+    S() { definition0(); }
+
+    ~S() { delete[] blk; }
 };
+
 class T : public __block__
 {
-private:
-    int x;
-    int y;
-    int xlength;
-    int ylength;
 
 public:
-    void rotate() {}
-    T() {}
-    ~T()
+    void definition0()
     {
-        delete[] blk;
+        blk = new int *[2];
+        blk[0] = new int[3];
+        blk[1] = new int[3];
+
+        blk[0][0] = 0;
+        blk[0][1] = 1;
+        blk[0][2] = 0;
+        blk[1][0] = 1;
+        blk[1][1] = 1;
+        blk[1][2] = 1;
+
+        xlength = 3;
+        ylength = 2;
     }
+
+    void definition1()
+    {
+        blk = new int *[3];
+        blk[0] = new int[2];
+        blk[1] = new int[2];
+        blk[2] = new int[2];
+
+        blk[0][0] = 1;
+        blk[0][1] = 0;
+        blk[1][0] = 1;
+        blk[1][1] = 1;
+        blk[2][0] = 1;
+        blk[2][1] = 0;
+
+        xlength = 2;
+        ylength = 3;
+    }
+
+    void definition2()
+    {
+        blk = new int *[2];
+        blk[0] = new int[3];
+        blk[1] = new int[3];
+
+        blk[0][0] = 1;
+        blk[0][1] = 1;
+        blk[0][2] = 1;
+        blk[1][0] = 0;
+        blk[1][1] = 1;
+        blk[1][2] = 0;
+
+        xlength = 3;
+        ylength = 2;
+    }
+
+    void definition3()
+    {
+        blk = new int *[3];
+        blk[0] = new int[2];
+        blk[1] = new int[2];
+        blk[2] = new int[2];
+
+        blk[0][0] = 0;
+        blk[0][1] = 1;
+        blk[1][0] = 1;
+        blk[1][1] = 1;
+        blk[2][0] = 0;
+        blk[2][1] = 1;
+
+        xlength = 2;
+        ylength = 3;
+    }
+
+    void rotate()
+    {
+        switch (rotationNumber)
+        {
+        case 0:
+            definition1();
+            rotationNumber = 1;
+            break;
+
+        case 1:
+            definition2();
+            rotationNumber = 2;
+            break;
+
+        case 2:
+            definition3();
+            rotationNumber = 3;
+            break;
+
+        case 3:
+            definition0();
+            rotationNumber = 0;
+            break;
+        }
+    }
+
+    T() { definition0(); }
+
+    ~T() { delete[] blk; }
 };
+
 class Z : public __block__
 {
-private:
-    int x;
-    int y;
-    int xlength;
-    int ylength;
 
 public:
-    void rotate() {}
-    Z() {}
-    ~Z()
+    void definition0()
     {
-        delete[] blk;
+        blk = new int *[2];
+        blk[0] = new int[3];
+        blk[1] = new int[3];
+
+        blk[0][0] = 1;
+        blk[0][1] = 1;
+        blk[0][2] = 0;
+        blk[1][0] = 0;
+        blk[1][1] = 1;
+        blk[1][2] = 1;
+
+        xlength = 3;
+        ylength = 2;
     }
+
+    void definition1()
+    {
+        blk = new int *[3];
+        blk[0] = new int[2];
+        blk[1] = new int[2];
+        blk[2] = new int[2];
+
+        blk[0][0] = 0;
+        blk[0][1] = 1;
+        blk[1][0] = 1;
+        blk[1][1] = 1;
+        blk[2][0] = 1;
+        blk[2][1] = 0;
+
+        xlength = 2;
+        ylength = 3;
+    }
+
+    void rotate()
+    {
+        if (rotationNumber == 1)
+        {
+            delete[] blk;
+            definition0();
+            rotationNumber = 1;
+        }
+
+        else
+        {
+            delete[] blk;
+            definition1();
+            rotationNumber = 0;
+        }
+    }
+
+    Z() { definition0(); }
+
+    ~Z() { delete[] blk; }
 };
