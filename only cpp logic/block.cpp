@@ -11,117 +11,125 @@ protected:
 
     int rotationNumber = 0;
 
-    void nullBlock()
-    {
-        for (int blockRowArrow = 0; blockRowArrow < 5; blockRowArrow++)
-        {
-            for (int blockColArrow = 0; blockColArrow < 5; blockColArrow++)
-            {
-                blk[blockRowArrow][blockColArrow] = 0;
-            }
-        }
-    }
+    // void nullBlock()
+    // {
+    //     for (int blockRowArrow = 0; blockRowArrow < 5; blockRowArrow++)
+    //     {
+    //         for (int blockColArrow = 0; blockColArrow < 5; blockColArrow++)
+    //         {
+    //             blk[blockRowArrow][blockColArrow] = 0;
+    //         }
+    //     }
+    // }
 
 public:
     int x;
     int y;
-    void I()
-    {
-        nullBlock();
+    // void I()
+    // {
+    //     nullBlock();
 
-        blk[0][2] = 1;
-        blk[1][2] = 1;
-        blk[2][2] = 1;
-        blk[3][2] = 1;
-    }
+    //     blk[0][2] = 1;
+    //     blk[1][2] = 1;
+    //     blk[2][2] = 1;
+    //     blk[3][2] = 1;
+    // }
 
-    void J()
-    {
-        nullBlock();
+    // void J()
+    // {
+    //     nullBlock();
 
-        blk[1][1] = 1;
-        blk[2][1] = 1;
-        blk[2][2] = 1;
-        blk[2][3] = 1;
-    }
+    //     blk[1][1] = 1;
+    //     blk[2][1] = 1;
+    //     blk[2][2] = 1;
+    //     blk[2][3] = 1;
+    // }
 
-    void L()
-    {
-        nullBlock();
+    // void L()
+    // {
+    //     nullBlock();
 
-        blk[1][3] = 1;
-        blk[2][1] = 1;
-        blk[2][2] = 1;
-        blk[2][3] = 1;
-    }
+    //     blk[1][3] = 1;
+    //     blk[2][1] = 1;
+    //     blk[2][2] = 1;
+    //     blk[2][3] = 1;
+    // }
 
-    void O()
-    {
-        nullBlock();
+    // void O()
+    // {
+    //     nullBlock();
 
-        blk[1][1] = 1;
-        blk[1][2] = 1;
-        blk[2][1] = 1;
-        blk[2][2] = 1;
-    }
+    //     blk[1][1] = 1;
+    //     blk[1][2] = 1;
+    //     blk[2][1] = 1;
+    //     blk[2][2] = 1;
+    // }
 
-    void S()
-    {
-        nullBlock();
+    // void S()
+    // {
+    //     nullBlock();
 
-        blk[1][2] = 1;
-        blk[1][3] = 1;
-        blk[2][1] = 1;
-        blk[2][2] = 1;
-    }
+    //     blk[1][2] = 1;
+    //     blk[1][3] = 1;
+    //     blk[2][1] = 1;
+    //     blk[2][2] = 1;
+    // }
 
-    void T()
-    {
-        nullBlock();
+    // void T()
+    // {
+    //     nullBlock();
 
-        blk[1][2] = 1;
-        blk[2][1] = 1;
-        blk[2][2] = 1;
-        blk[2][3] = 1;
-    }
+    //     blk[1][2] = 1;
+    //     blk[2][1] = 1;
+    //     blk[2][2] = 1;
+    //     blk[2][3] = 1;
+    // }
 
-    void Z()
-    {
-        nullBlock();
+    // void Z()
+    // {
+    //     nullBlock();
 
-        blk[1][1] = 1;
-        blk[1][2] = 1;
-        blk[2][2] = 1;
-        blk[2][3] = 1;
-    }
+    //     blk[1][1] = 1;
+    //     blk[1][2] = 1;
+    //     blk[2][2] = 1;
+    //     blk[2][3] = 1;
+    // }
 
-    void operator~()
-    {
-        int temporaryBlock[5][5];
-        for (int blockRowArrow = 0; blockRowArrow < 5; blockRowArrow++)
-        {
-            for (int blockColArrow = 0; blockColArrow < 5; blockColArrow++)
-            {
-                temporaryBlock[blockColArrow][4 - blockRowArrow] = blk[blockRowArrow][blockColArrow];
-            }
-        }
+    // void operator~()
+    // {
+    //     int temporaryBlock[5][5];
+    //     for (int blockRowArrow = 0; blockRowArrow < 5; blockRowArrow++)
+    //     {
+    //         for (int blockColArrow = 0; blockColArrow < 5; blockColArrow++)
+    //         {
+    //             temporaryBlock[blockColArrow][4 - blockRowArrow] = blk[blockRowArrow][blockColArrow];
+    //         }
+    //     }
 
-        for (int blockRowArrow = 0; blockRowArrow < 5; blockRowArrow++)
-        {
-            for (int blockColArrow = 0; blockColArrow < 5; blockColArrow++)
-            {
-                blk[blockRowArrow][blockColArrow] = temporaryBlock[blockRowArrow][blockColArrow];
-            }
-        }
-    }
+    //     for (int blockRowArrow = 0; blockRowArrow < 5; blockRowArrow++)
+    //     {
+    //         for (int blockColArrow = 0; blockColArrow < 5; blockColArrow++)
+    //         {
+    //             blk[blockRowArrow][blockColArrow] = temporaryBlock[blockRowArrow][blockColArrow];
+    //         }
+    //     }
+    // }
 
     void show()
     {
-        cout << blk[0][0] << " " << blk[0][1] << " " << blk[0][2] << " " << blk[0][3] << " " << blk[0][4] << endl;
-        cout << blk[1][0] << " " << blk[1][1] << " " << blk[1][2] << " " << blk[1][3] << " " << blk[1][4] << endl;
-        cout << blk[2][0] << " " << blk[2][1] << " " << blk[2][2] << " " << blk[2][3] << " " << blk[2][4] << endl;
-        cout << blk[3][0] << " " << blk[3][1] << " " << blk[3][2] << " " << blk[3][3] << " " << blk[3][4] << endl;
-        cout << blk[4][0] << " " << blk[4][1] << " " << blk[4][2] << " " << blk[4][3] << " " << blk[4][4] << endl;
+        for (int showRowArrow = 0; showRowArrow < ylength; showRowArrow++)
+        {
+            for (int showColArrow = 0; showColArrow < xlength; showColArrow++)
+            {
+                cout << blk[showRowArrow][showColArrow] << " ";
+            }
+            cout << endl;
+        }
+        // cout << blk[0][0] << " " << blk[0][1] << " " << blk[0][2] << " " << blk[0][3] << " " << blk[0][4] << endl;
+        // cout << blk[1][0] << " " << blk[1][1] << " " << blk[1][2] << " " << blk[1][3] << " " << blk[1][4] << endl;
+        // cout << blk[2][0] << " " << blk[2][1] << " " << blk[2][2] << " " << blk[2][3] << " " << blk[2][4] << endl;
+        // cout << blk[3][0] << " " << blk[3][1] << " " << blk[3][2] << " " << blk[3][3] << " " << blk[3][4] << endl;
+        // cout << blk[4][0] << " " << blk[4][1] << " " << blk[4][2] << " " << blk[4][3] << " " << blk[4][4] << endl;
     }
 
     int *operator[](int x)
@@ -129,9 +137,11 @@ public:
         return blk[x];
     }
 
+    virtual void rotate();
+
     __block__()
     {
-        nullBlock();
+        // nullBlock();
 
         x = 0;
         y = 2;
@@ -140,7 +150,6 @@ public:
 
 class I : public __block__
 {
-private:
 public:
     void definition0()
     {
@@ -175,16 +184,15 @@ public:
 
     void rotate()
     {
+        delete[] blk;
         if (rotationNumber == 1)
         {
-            delete[] blk;
             definition0();
             rotationNumber = 1;
         }
 
         else
         {
-            delete[] blk;
             definition1();
             rotationNumber = 0;
         }
@@ -197,7 +205,6 @@ public:
 
 class J : public __block__
 {
-
 public:
     void definition0()
     {
@@ -271,6 +278,7 @@ public:
 
     void rotate()
     {
+        delete[] blk;
         switch (rotationNumber)
         {
         case 0:
@@ -302,7 +310,6 @@ public:
 
 class L : public __block__
 {
-
 public:
     void definition0()
     {
@@ -376,6 +383,7 @@ public:
 
     void rotate()
     {
+        delete[] blk;
         switch (rotationNumber)
         {
         case 0:
@@ -407,7 +415,6 @@ public:
 
 class O : public __block__
 {
-
 public:
     void rotate() {}
 
@@ -431,7 +438,6 @@ public:
 
 class S : public __block__
 {
-
 public:
     void definition0()
     {
@@ -470,16 +476,15 @@ public:
 
     void rotate()
     {
+        delete[] blk;
         if (rotationNumber == 1)
         {
-            delete[] blk;
             definition0();
             rotationNumber = 1;
         }
 
         else
         {
-            delete[] blk;
             definition1();
             rotationNumber = 0;
         }
@@ -566,6 +571,7 @@ public:
 
     void rotate()
     {
+        delete[] blk;
         switch (rotationNumber)
         {
         case 0:
@@ -636,16 +642,15 @@ public:
 
     void rotate()
     {
+        delete[] blk;
         if (rotationNumber == 1)
         {
-            delete[] blk;
             definition0();
             rotationNumber = 1;
         }
 
         else
         {
-            delete[] blk;
             definition1();
             rotationNumber = 0;
         }

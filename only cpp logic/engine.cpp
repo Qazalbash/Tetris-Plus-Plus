@@ -11,6 +11,15 @@ public:
     __screen__ playground;
     __screen__ landed;
     __block__ tetromino;
+
+    I __I__;
+    J __J__;
+    L __L__;
+    O __O__;
+    S __S__;
+    T __T__;
+    Z __Z__;
+
     int speed;
     int score;
 
@@ -29,25 +38,32 @@ public:
         switch (secretNumber)
         {
         case 0:
-            tetromino.I();
+            // tetromino.I();
+            tetromino = __I__;
             break;
         case 1:
-            tetromino.J();
+            // tetromino.J();
+            tetromino = __J__;
             break;
         case 2:
-            tetromino.L();
+            // tetromino.L();
+            tetromino = __L__;
             break;
         case 3:
-            tetromino.O();
+            // tetromino.O();
+            tetromino = __O__;
             break;
         case 4:
-            tetromino.S();
+            // tetromino.S();
+            tetromino = __S__;
             break;
         case 5:
-            tetromino.T();
+            // tetromino.T();
+            tetromino = __T__;
             break;
         case 6:
-            tetromino.Z();
+            // tetromino.Z();
+            tetromino = __Z__;
             break;
         }
     }
@@ -58,7 +74,7 @@ public:
         switch (direction)
         {
         case 'U':
-            ~tetromino;
+            tetromino.rotate();
             break;
         case 'D':
             tetromino.x += 1;
@@ -87,15 +103,15 @@ public:
         score += speed * 100;
     }
 
-    bool wallCollision(bool rightWall = false, bool leftWall = false, int rightColumn = 0, int leftColumn = 4)
-    {
-        if (rightWall)
-        {
-            for (int wallCollisionRowArrow = 0; wallCollisionRowArrow < 5; wallCollisionRowArrow++)
-            {
-                        }
-        }
-    }
+    // bool wallCollision(bool rightWall = false, bool leftWall = false, int rightColumn = 0, int leftColumn = 4)
+    // {
+    //     if (rightWall)
+    //     {
+    //         for (int wallCollisionRowArrow = 0; wallCollisionRowArrow < 5; wallCollisionRowArrow++)
+    //         {
+    //         }
+    //     }
+    // }
 
     // bool blockCollision()
     // {
@@ -119,3 +135,15 @@ public:
         selectPeice();
     }
 };
+
+int main()
+{
+    cout << "start" << endl;
+    __engine__ tempEngine;
+    cout << "after object" << endl;
+    tempEngine.selectPeice();
+    cout << "after selection" << endl;
+    tempEngine.tetromino.show();
+    cout << "after show" << endl;
+    return 0;
+}
