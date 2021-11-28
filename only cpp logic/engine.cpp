@@ -10,15 +10,15 @@ class __engine__
 public:
     __screen__ playground;
     __screen__ landed;
-    __block__ tetromino;
+    __block__ *tetromino;
 
-    I __I__;
-    J __J__;
-    L __L__;
-    O __O__;
-    S __S__;
-    T __T__;
-    Z __Z__;
+    I *__I__ = new I();
+    J *__J__ = new J();
+    L *__L__ = new L();
+    O *__O__ = new O();
+    S *__S__ = new S();
+    T *__T__ = new T();
+    Z *__Z__ = new Z();
 
     int speed;
     int score;
@@ -74,21 +74,21 @@ public:
         switch (direction)
         {
         case 'U':
-            tetromino.rotate();
+            tetromino->rotate();
             break;
         case 'D':
-            tetromino.x += 1;
+            tetromino->x += 1;
             break;
         case 'L':
-            tetromino.y -= 1;
-            tetromino.x += 1;
+            tetromino->y -= 1;
+            tetromino->x += 1;
             break;
         case 'R':
-            tetromino.y += 1;
-            tetromino.x += 1;
+            tetromino->y += 1;
+            tetromino->x += 1;
             break;
         default:
-            tetromino.x += 1;
+            tetromino->x += 1;
             break;
         }
     }
@@ -123,7 +123,7 @@ public:
         {
             for (int renderBlockColArrow = yCord; renderBlockColArrow < yCord + 5; renderBlockColArrow++)
             {
-                landed[renderBlockRowArrow][renderBlockColArrow] = tetromino[renderBlockRowArrow - xCord][renderBlockColArrow - yCord];
+                landed[renderBlockRowArrow][renderBlockColArrow] = *tetromino[renderBlockRowArrow - xCord][renderBlockColArrow - yCord];
             }
         }
     }
@@ -141,9 +141,9 @@ int main()
     cout << "start" << endl;
     __engine__ tempEngine;
     cout << "after object" << endl;
-    tempEngine.selectPeice();
+    // tempEngine.selectPeice();
     cout << "after selection" << endl;
-    tempEngine.tetromino.show();
+    // tempEngine.tetromino->show();
     cout << "after show" << endl;
     return 0;
 }

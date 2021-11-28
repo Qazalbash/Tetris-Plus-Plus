@@ -137,14 +137,23 @@ public:
         return blk[x];
     }
 
+    // void operator=(__block__ *B)
+    // {
+    // }
+
     virtual void rotate();
 
     __block__()
     {
         // nullBlock();
 
-        x = 0;
-        y = 2;
+        // x = 0;
+        // y = 2;
+    }
+
+    virtual ~__block__()
+    {
+        delete[] blk;
     }
 };
 
