@@ -10,15 +10,15 @@ class __engine__
 public:
     __screen__ playground;
     __screen__ landed;
-    __block__ *tetromino;
+    __block__ tetromino;
 
-    I *__I__ = new I();
-    J *__J__ = new J();
-    L *__L__ = new L();
-    O *__O__ = new O();
-    S *__S__ = new S();
-    T *__T__ = new T();
-    Z *__Z__ = new Z();
+    // I *__I__ = new I();
+    // J *__J__ = new J();
+    // L *__L__ = new L();
+    // O *__O__ = new O();
+    // S *__S__ = new S();
+    // T *__T__ = new T();
+    // Z *__Z__ = new Z();
 
     int speed;
     int score;
@@ -38,32 +38,32 @@ public:
         switch (secretNumber)
         {
         case 0:
-            // tetromino.I();
-            tetromino = __I__;
+            tetromino.I();
+            // tetromino = __I__;
             break;
         case 1:
-            // tetromino.J();
-            tetromino = __J__;
+            tetromino.J();
+            // tetromino = __J__;
             break;
         case 2:
-            // tetromino.L();
-            tetromino = __L__;
+            tetromino.L();
+            // tetromino = __L__;
             break;
         case 3:
-            // tetromino.O();
-            tetromino = __O__;
+            tetromino.O();
+            // tetromino = __O__;
             break;
         case 4:
-            // tetromino.S();
-            tetromino = __S__;
+            tetromino.S();
+            // tetromino = __S__;
             break;
         case 5:
-            // tetromino.T();
-            tetromino = __T__;
+            tetromino.T();
+            // tetromino = __T__;
             break;
         case 6:
-            // tetromino.Z();
-            tetromino = __Z__;
+            tetromino.Z();
+            // tetromino = __Z__;
             break;
         }
     }
@@ -74,21 +74,26 @@ public:
         switch (direction)
         {
         case 'U':
-            tetromino->rotate();
+            ~tetromino;
+            tetromino.row += 1;
+            // tetromino.rotate();
             break;
         case 'D':
-            tetromino->x += 1;
+            if (!isBottomCollision())
+            {
+                tetromino.row += 1;
+            }
             break;
         case 'L':
-            tetromino->y -= 1;
-            tetromino->x += 1;
+            tetromino.column -= 1;
+            tetromino.row += 1;
             break;
         case 'R':
-            tetromino->y += 1;
-            tetromino->x += 1;
+            tetromino.column += 1;
+            tetromino.row += 1;
             break;
         default:
-            tetromino->x += 1;
+            tetromino.row += 1;
             break;
         }
     }
@@ -113,9 +118,20 @@ public:
     //     }
     // }
 
-    // bool blockCollision()
-    // {
-    // }
+    bool isBottomCollision()
+    {
+        for (int bottomCollisionArrow = 0; bottomCollisionArrow < COLS; bottomCollisionArrow++)
+        {
+            for (int tetrominoBottomArrow = 0; tetrominoBottomArrow < 5; tetrominoBottomArrow++)
+            {
+                if (landed[tetromino.row + 5][bottomCollisionArrow] == 1 && tetromino[4][tetrominoBottomArrow] == 1)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     void renderBlock(int xCord, int yCord)
     {
@@ -123,7 +139,7 @@ public:
         {
             for (int renderBlockColArrow = yCord; renderBlockColArrow < yCord + 5; renderBlockColArrow++)
             {
-                landed[renderBlockRowArrow][renderBlockColArrow] = *tetromino[renderBlockRowArrow - xCord][renderBlockColArrow - yCord];
+                playground[renderBlockRowArrow][renderBlockColArrow] = tetromino[renderBlockRowArrow - xCord][renderBlockColArrow - yCord];
             }
         }
     }
@@ -134,16 +150,35 @@ public:
         speed = 1;
         selectPeice();
     }
+
+    ~__engine__()
+    {
+        delete[] & playground;
+        delete[] & landed;
+        delete[] & tetromino;
+    }
+
+    // private:
+    void refresh()
+    {
+        for (int playgroundRowArrow = 0; playgroundRowArrow < ROWS; playgroundRowArrow++)
+        {
+            for (int playgroundColArrow = 0; playgroundColArrow < COLS; playgroundColArrow++)
+            {
+                playground[playgroundRowArrow][playgroundColArrow] = landed[playgroundRowArrow][playgroundColArrow];
+            }
+        }
+    }
 };
 
-int main()
-{
-    cout << "start" << endl;
-    __engine__ tempEngine;
-    cout << "after object" << endl;
-    // tempEngine.selectPeice();
-    cout << "after selection" << endl;
-    // tempEngine.tetromino->show();
-    cout << "after show" << endl;
-    return 0;
-}
+// int main()
+// {
+//     cout << "start" << endl;
+//     __engine__ tempEngine;
+//     cout << "after object" << endl;
+//     tempEngine.selectPeice();
+//     cout << "after selection" << endl;
+//     tempEngine.tetromino.show();
+//     cout << "after show" << endl;
+//     return 0;
+// }

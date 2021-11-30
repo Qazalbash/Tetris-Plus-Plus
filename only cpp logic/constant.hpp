@@ -1,2 +1,2 @@
-int ROWS = 20;
-int COLS = 10;
+const int ROWS = 20;
+const int COLS = 10;

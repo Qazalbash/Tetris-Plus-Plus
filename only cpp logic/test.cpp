@@ -4,16 +4,18 @@ using namespace std;
 
 int main()
 {
-    // __engine__ server;
+    __engine__ server;
 
-    // while (true)
-    // {
-    //     server.renderBlock(server.tetromino.x, server.tetromino.y);
+    while (true)
+    {
+        server.renderBlock(server.tetromino.row, server.tetromino.column);
 
-    //     (server.landed).appear();
+        (server.playground).appear();
 
-    //     server.run();
-    // }
+        server.refresh();
+
+        server.run();
+    }
 
     return 0;
 }
