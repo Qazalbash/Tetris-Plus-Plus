@@ -1,6 +1,5 @@
 #include "screen.cpp"
 #include "block.cpp"
-#include "constant.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -12,14 +11,6 @@ public:
     __screen__ playground;
     __screen__ landed;
     __block__ tetromino;
-
-    // I *__I__ = new I();
-    // J *__J__ = new J();
-    // L *__L__ = new L();
-    // O *__O__ = new O();
-    // S *__S__ = new S();
-    // T *__T__ = new T();
-    // Z *__Z__ = new Z();
 
     int speed;
     int score;
@@ -40,31 +31,24 @@ public:
         {
         case 0:
             tetromino.I();
-            // tetromino = __I__;
             break;
         case 1:
             tetromino.J();
-            // tetromino = __J__;
             break;
         case 2:
             tetromino.L();
-            // tetromino = __L__;
             break;
         case 3:
             tetromino.O();
-            // tetromino = __O__;
             break;
         case 4:
             tetromino.S();
-            // tetromino = __S__;
             break;
         case 5:
             tetromino.T();
-            // tetromino = __T__;
             break;
         case 6:
             tetromino.Z();
-            // tetromino = __Z__;
             break;
         }
     }
@@ -77,7 +61,6 @@ public:
         case 'U':
             ~tetromino;
             tetromino.row += 1;
-            // tetromino.rotate();
             break;
         case 'D':
             if (!isBottomCollision())
@@ -86,11 +69,25 @@ public:
             }
             break;
         case 'L':
-            tetromino.column -= 1;
+            if (!wallCollision(false, true))
+            {
+                tetromino.column -= 1;
+            }
             tetromino.row += 1;
             break;
         case 'R':
-            tetromino.column += 1;
+            if (!wallCollision(true, false) && tetromino.row + tetromino.bottomWallRowNumber + 1 < ROWS)
+            {
+                tetromino.column += 1;
+            }
+            else if (tetromino.row + tetromino.bottomWallRowNumber + 1 == ROWS)
+            {
+                landed.update(playground);
+            }
+            else
+            {
+                landed.update(playground);
+            }
             tetromino.row += 1;
             break;
         default:
@@ -111,37 +108,40 @@ public:
 
     bool wallCollision(bool rightWall = false, bool leftWall = false)
     {
-        if (rightWall)
+        if (!leftWall && rightWall)
         {
-            return tetromino.rightWallColumnNumber + tetromino.column + 1 > COLS;
+            return tetromino.rightWallColumnNumber + tetromino.column + 1 >= COLS;
         }
-        else if (leftWall)
+        else if (leftWall && !rightWall)
         {
-            return tetromino.leftWallColumnNumber + tetromino.column + 1 > 0;
+            return tetromino.column + tetromino.leftWallColumnNumber <= 0;
         }
+
+        return false;
     }
 
     bool isBottomCollision()
     {
-        for (int bottomCollisionArrow = 0; bottomCollisionArrow < COLS; bottomCollisionArrow++)
+        if (tetromino.row < 19)
         {
-            if (landed[tetromino.bottomWallRowNumber + 1][bottomCollisionArrow] == 1)
+            for (int bottomCollisionArrow = 0; bottomCollisionArrow < COLS; bottomCollisionArrow++)
             {
-                return true;
+                if (landed[tetromino.bottomWallRowNumber + 1][bottomCollisionArrow] == 1)
+                {
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    void renderBlock(int col, int row)
+    void renderBlock(int Row, int Col)
     {
-        int renderBlockRowArrow = row;
-        int renderBlockColArrow = col * (col > -1) + tetromino.leftWallColumnNumber * (col <= -1) + tetromino.rightWallColumnNumber * (col >= COLS);
-        for (; renderBlockRowArrow < row + 5; renderBlockRowArrow++)
+        for (int renderBlockRowArrow = tetromino.upperWallRowNumber; renderBlockRowArrow <= tetromino.bottomWallRowNumber; renderBlockRowArrow++)
         {
-            for (; renderBlockColArrow < col + 5; renderBlockColArrow++)
+            for (int renderBlockColArrow = tetromino.leftWallColumnNumber; renderBlockColArrow <= tetromino.rightWallColumnNumber; renderBlockColArrow++)
             {
-                playground[renderBlockRowArrow][renderBlockColArrow] = tetromino[renderBlockRowArrow - row][renderBlockColArrow - col];
+                playground[renderBlockRowArrow + Row][renderBlockColArrow + Col] = tetromino[renderBlockRowArrow][renderBlockColArrow];
             }
         }
     }
@@ -153,14 +153,13 @@ public:
         selectPeice();
     }
 
-    ~__engine__()
-    {
-        delete[] & playground;
-        delete[] & landed;
-        delete[] & tetromino;
-    }
+    // ~__engine__()
+    // {
+    //     delete[] & playground;
+    //     delete[] & landed;
+    //     delete[] & tetromino;
+    // }
 
-    // private:
     void refresh()
     {
         for (int playgroundRowArrow = 0; playgroundRowArrow < ROWS; playgroundRowArrow++)
@@ -171,16 +170,12 @@ public:
             }
         }
     }
-};
 
-// int main()
-// {
-//     cout << "start" << endl;
-//     __engine__ tempEngine;
-//     cout << "after object" << endl;
-//     tempEngine.selectPeice();
-//     cout << "after selection" << endl;
-//     tempEngine.tetromino.show();
-//     cout << "after show" << endl;
-//     return 0;
-// }
+    // void checkCollision()
+    // {
+    //     if (isBottomCollision())
+    //     {
+    //         landed.update(playground);
+    //     }
+    // }
+};

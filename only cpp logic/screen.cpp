@@ -1,6 +1,5 @@
 #include "constant.hpp"
 #include <iostream>
-#include <stack>
 using namespace std;
 
 class __screen__
@@ -20,15 +19,8 @@ public:
 
     void appear()
     {
-        cout << "  ";
-        for (int arrow = 0; arrow < COLS; arrow++)
-        {
-            cout << arrow % 10 << " ";
-        }
-        cout << endl;
         for (int screenRowArrow = 0; screenRowArrow < ROWS; screenRowArrow++)
         {
-            cout << screenRowArrow << " ";
             for (int screenColArrow = 0; screenColArrow < COLS; screenColArrow++)
             {
                 cout << screen[screenRowArrow][screenColArrow] << " ";
