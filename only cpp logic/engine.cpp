@@ -1,5 +1,6 @@
 #include "screen.cpp"
 #include "block.cpp"
+#include "constant.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -108,38 +109,39 @@ public:
         score += speed * 100;
     }
 
-    // bool wallCollision(bool rightWall = false, bool leftWall = false, int rightColumn = 0, int leftColumn = 4)
-    // {
-    //     if (rightWall)
-    //     {
-    //         for (int wallCollisionRowArrow = 0; wallCollisionRowArrow < 5; wallCollisionRowArrow++)
-    //         {
-    //         }
-    //     }
-    // }
+    bool wallCollision(bool rightWall = false, bool leftWall = false)
+    {
+        if (rightWall)
+        {
+            return tetromino.rightWallColumnNumber + tetromino.column + 1 > COLS;
+        }
+        else if (leftWall)
+        {
+            return tetromino.leftWallColumnNumber + tetromino.column + 1 > 0;
+        }
+    }
 
     bool isBottomCollision()
     {
         for (int bottomCollisionArrow = 0; bottomCollisionArrow < COLS; bottomCollisionArrow++)
         {
-            for (int tetrominoBottomArrow = 0; tetrominoBottomArrow < 5; tetrominoBottomArrow++)
+            if (landed[tetromino.bottomWallRowNumber + 1][bottomCollisionArrow] == 1)
             {
-                if (landed[tetromino.row + 5][bottomCollisionArrow] == 1 && tetromino[4][tetrominoBottomArrow] == 1)
-                {
-                    return true;
-                }
+                return true;
             }
         }
         return false;
     }
 
-    void renderBlock(int xCord, int yCord)
+    void renderBlock(int col, int row)
     {
-        for (int renderBlockRowArrow = xCord; renderBlockRowArrow < xCord + 5; renderBlockRowArrow++)
+        int renderBlockRowArrow = row;
+        int renderBlockColArrow = col * (col > -1) + tetromino.leftWallColumnNumber * (col <= -1) + tetromino.rightWallColumnNumber * (col >= COLS);
+        for (; renderBlockRowArrow < row + 5; renderBlockRowArrow++)
         {
-            for (int renderBlockColArrow = yCord; renderBlockColArrow < yCord + 5; renderBlockColArrow++)
+            for (; renderBlockColArrow < col + 5; renderBlockColArrow++)
             {
-                playground[renderBlockRowArrow][renderBlockColArrow] = tetromino[renderBlockRowArrow - xCord][renderBlockColArrow - yCord];
+                playground[renderBlockRowArrow][renderBlockColArrow] = tetromino[renderBlockRowArrow - row][renderBlockColArrow - col];
             }
         }
     }

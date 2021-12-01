@@ -7,11 +7,6 @@ class __block__
 protected:
     int **blk;
 
-    // int xlength;
-    // int ylength;
-
-    // int rotationNumber = 0;
-
     void nullBlock()
     {
         for (int blockRowArrow = 0; blockRowArrow < 5; blockRowArrow++)
@@ -27,6 +22,11 @@ public:
     int row;
     int column;
 
+    int rightWallColumnNumber;
+    int leftWallColumnNumber;
+    int upperWallRowNumber;
+    int bottomWallRowNumber;
+
     void I()
     {
         nullBlock();
@@ -35,6 +35,11 @@ public:
         blk[1][2] = 1;
         blk[2][2] = 1;
         blk[3][2] = 1;
+
+        rightWallColumnNumber = updateRightWallColumnNumber();
+        leftWallColumnNumber = updateLeftWallColumnNumber();
+        upperWallRowNumber = updateUpperWallRowNumber();
+        bottomWallRowNumber = updateBottomWallRowNumber();
     }
 
     void J()
@@ -45,6 +50,11 @@ public:
         blk[2][1] = 1;
         blk[2][2] = 1;
         blk[2][3] = 1;
+
+        rightWallColumnNumber = updateRightWallColumnNumber();
+        leftWallColumnNumber = updateLeftWallColumnNumber();
+        upperWallRowNumber = updateUpperWallRowNumber();
+        bottomWallRowNumber = updateBottomWallRowNumber();
     }
 
     void L()
@@ -55,6 +65,11 @@ public:
         blk[2][1] = 1;
         blk[2][2] = 1;
         blk[2][3] = 1;
+
+        rightWallColumnNumber = updateRightWallColumnNumber();
+        leftWallColumnNumber = updateLeftWallColumnNumber();
+        upperWallRowNumber = updateUpperWallRowNumber();
+        bottomWallRowNumber = updateBottomWallRowNumber();
     }
 
     void O()
@@ -65,6 +80,11 @@ public:
         blk[1][2] = 1;
         blk[2][1] = 1;
         blk[2][2] = 1;
+
+        rightWallColumnNumber = updateRightWallColumnNumber();
+        leftWallColumnNumber = updateLeftWallColumnNumber();
+        upperWallRowNumber = updateUpperWallRowNumber();
+        bottomWallRowNumber = updateBottomWallRowNumber();
     }
 
     void S()
@@ -75,6 +95,11 @@ public:
         blk[1][3] = 1;
         blk[2][1] = 1;
         blk[2][2] = 1;
+
+        rightWallColumnNumber = updateRightWallColumnNumber();
+        leftWallColumnNumber = updateLeftWallColumnNumber();
+        upperWallRowNumber = updateUpperWallRowNumber();
+        bottomWallRowNumber = updateBottomWallRowNumber();
     }
 
     void T()
@@ -85,6 +110,11 @@ public:
         blk[2][1] = 1;
         blk[2][2] = 1;
         blk[2][3] = 1;
+
+        rightWallColumnNumber = updateRightWallColumnNumber();
+        leftWallColumnNumber = updateLeftWallColumnNumber();
+        upperWallRowNumber = updateUpperWallRowNumber();
+        bottomWallRowNumber = updateBottomWallRowNumber();
     }
 
     void Z()
@@ -95,6 +125,71 @@ public:
         blk[1][2] = 1;
         blk[2][2] = 1;
         blk[2][3] = 1;
+
+        rightWallColumnNumber = updateRightWallColumnNumber();
+        leftWallColumnNumber = updateLeftWallColumnNumber();
+        upperWallRowNumber = updateUpperWallRowNumber();
+        bottomWallRowNumber = updateBottomWallRowNumber();
+    }
+
+    int updateUpperWallRowNumber()
+    {
+        for (int blockRowArrow = 0; blockRowArrow < 5; blockRowArrow++)
+        {
+            for (int blockColArrow = 0; blockColArrow < 5; blockColArrow++)
+            {
+                if (blk[blockRowArrow][blockColArrow] == 1)
+                {
+                    return blockRowArrow;
+                }
+            }
+        }
+        return bottomWallRowNumber;
+    }
+
+    int updateBottomWallRowNumber()
+    {
+        for (int blockRowArrow = 4; blockRowArrow > -1; blockRowArrow--)
+        {
+            for (int blockColArrow = 0; blockColArrow < 5; blockColArrow++)
+            {
+                if (blk[blockRowArrow][blockColArrow] == 1)
+                {
+                    return blockRowArrow;
+                }
+            }
+        }
+        return bottomWallRowNumber;
+    }
+
+    int updateRightWallColumnNumber()
+    {
+        for (int blockColArrow = 4; blockColArrow > -1; blockColArrow--)
+        {
+            for (int blockRowArrow = 0; blockRowArrow < 4; blockRowArrow++)
+            {
+                if (blk[blockRowArrow][blockColArrow] == 1)
+                {
+                    return blockColArrow;
+                }
+            }
+        }
+        return rightWallColumnNumber;
+    }
+
+    int updateLeftWallColumnNumber()
+    {
+        for (int blockColArrow = 0; blockColArrow < 5; blockColArrow++)
+        {
+            for (int blockRowArrow = 0; blockRowArrow < 4; blockRowArrow++)
+            {
+                if (blk[blockRowArrow][blockColArrow] == 1)
+                {
+                    return blockColArrow;
+                }
+            }
+        }
+        return leftWallColumnNumber;
     }
 
     void operator~()
@@ -115,6 +210,11 @@ public:
                 blk[blockRowArrow][blockColArrow] = temporaryBlock[blockRowArrow][blockColArrow];
             }
         }
+
+        rightWallColumnNumber = updateRightWallColumnNumber();
+        leftWallColumnNumber = updateLeftWallColumnNumber();
+        upperWallRowNumber = updateUpperWallRowNumber();
+        bottomWallRowNumber = updateBottomWallRowNumber();
     }
 
     void show()
@@ -138,12 +238,6 @@ public:
     {
         return blk[x];
     }
-
-    // void operator=(__block__ *B)
-    // {
-    // }
-
-    // virtual void rotate();
 
     __block__()
     {
@@ -169,17 +263,45 @@ public:
 // int main()
 // {
 //     __block__ peice;
-//     peice.Z();
+
+//     // peice.I();
+//     // peice.show();
+//     // cout << endl;
+//     // peice.J();
+//     // peice.show();
+//     // cout << endl;
+//     // peice.L();
+//     // peice.show();
+//     // cout << endl;
+//     // peice.O();
+//     // peice.show();
+//     // cout << endl;
+//     // peice.S();
+//     // peice.show();
+//     // cout << endl;
+//     // peice.T();
+//     // peice.show();
+//     // cout << endl;
+//     // peice.Z();
+//     // peice.show();
+//     // cout << endl;
+
+//     peice.J();
 //     peice.show();
-//     cout << endl;
+//     cout << peice.upperWallRowNumber << endl;
+//     cout << peice.leftWallColumnNumber << " " << peice.bottomWallRowNumber << " " << peice.rightWallColumnNumber << endl;
 //     ~peice;
 //     peice.show();
-//     cout << endl;
+//     cout << peice.upperWallRowNumber << endl;
+//     cout << peice.leftWallColumnNumber << " " << peice.bottomWallRowNumber << " " << peice.rightWallColumnNumber << endl;
 //     ~peice;
 //     peice.show();
-//     cout << endl;
+//     cout << peice.upperWallRowNumber << endl;
+//     cout << peice.leftWallColumnNumber << " " << peice.bottomWallRowNumber << " " << peice.rightWallColumnNumber << endl;
 //     ~peice;
 //     peice.show();
+//     cout << peice.upperWallRowNumber << endl;
+//     cout << peice.leftWallColumnNumber << " " << peice.bottomWallRowNumber << " " << peice.rightWallColumnNumber << endl;
 
 //     return 0;
 // }
