@@ -6,7 +6,7 @@ void mainLoop(__engine__ &server)
 {
     while (!server.isBottomCollision())
     {
-        server.selectPeice();
+        // server.selectPeice();
         cout << server.tetromino.row << " " << server.tetromino.column << endl;
         cout << endl;
         server.renderBlock(server.tetromino.row, server.tetromino.column);
