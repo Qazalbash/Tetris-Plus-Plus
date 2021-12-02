@@ -34,6 +34,15 @@ public:
         return screen[col];
     }
 
+    void swap(int row1, int row2)
+    // row1 is upper row
+    // row 2 is lower row
+    {
+        static int tempArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        screen[row2] = screen[row1];
+        screen[row1] = tempArray;
+    }
+
     __screen__()
     {
         screen = new int *[ROWS];

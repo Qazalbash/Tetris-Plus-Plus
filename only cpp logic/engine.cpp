@@ -80,14 +80,6 @@ public:
             {
                 tetromino.column += 1;
             }
-            else if (tetromino.row + tetromino.bottomWallRowNumber + 1 == ROWS)
-            {
-                landed.update(playground);
-            }
-            else
-            {
-                landed.update(playground);
-            }
             tetromino.row += 1;
             break;
         default:
@@ -122,7 +114,7 @@ public:
 
     bool isBottomCollision()
     {
-        if (tetromino.row < 19)
+        if (tetromino.row + tetromino.bottomWallRowNumber < 19)
         {
             for (int bottomCollisionArrow = 0; bottomCollisionArrow < COLS; bottomCollisionArrow++)
             {
@@ -132,16 +124,48 @@ public:
                 }
             }
         }
+        if (tetromino.row + tetromino.bottomWallRowNumber == 19)
+        {
+            return true;
+        }
         return false;
     }
 
     void renderBlock(int Row, int Col)
     {
-        for (int renderBlockRowArrow = tetromino.upperWallRowNumber; renderBlockRowArrow <= tetromino.bottomWallRowNumber; renderBlockRowArrow++)
+        if (!checkCollision())
         {
-            for (int renderBlockColArrow = tetromino.leftWallColumnNumber; renderBlockColArrow <= tetromino.rightWallColumnNumber; renderBlockColArrow++)
+            for (int renderBlockRowArrow = tetromino.upperWallRowNumber; renderBlockRowArrow <= tetromino.bottomWallRowNumber; renderBlockRowArrow++)
             {
-                playground[renderBlockRowArrow + Row][renderBlockColArrow + Col] = tetromino[renderBlockRowArrow][renderBlockColArrow];
+                for (int renderBlockColArrow = tetromino.leftWallColumnNumber; renderBlockColArrow <= tetromino.rightWallColumnNumber; renderBlockColArrow++)
+                {
+                    playground[renderBlockRowArrow + Row][renderBlockColArrow + Col] = tetromino[renderBlockRowArrow][renderBlockColArrow];
+                }
+            }
+        }
+    }
+
+    void blockBuster()
+    {
+        static bool bustingRow;
+        for (int blockBusterRowArrow = ROWS - 1; blockBusterRowArrow >= 0; blockBusterRowArrow--)
+        {
+            bustingRow = true;
+            for (int blockBusterColArrow = 0; blockBusterColArrow < COLS; blockBusterColArrow++)
+            {
+                if (playground[blockBusterRowArrow][blockBusterColArrow] == 0)
+                {
+                    bustingRow = false;
+                    break;
+                }
+            }
+            if (bustingRow)
+            {
+                for (int swapRowArrow = blockBusterRowArrow; swapRowArrow >= 0; swapRowArrow--)
+                {
+                    playground.swap(swapRowArrow - 1, swapRowArrow);
+                }
+                break;
             }
         }
     }
@@ -171,11 +195,13 @@ public:
         }
     }
 
-    // void checkCollision()
-    // {
-    //     if (isBottomCollision())
-    //     {
-    //         landed.update(playground);
-    //     }
-    // }
+    bool checkCollision()
+    {
+        if (isBottomCollision())
+        {
+            landed.update(playground);
+            return true;
+        }
+        return false;
+    }
 };
