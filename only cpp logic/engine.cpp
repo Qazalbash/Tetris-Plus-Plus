@@ -124,8 +124,9 @@ public:
                 }
             }
         }
-        if (tetromino.row + tetromino.bottomWallRowNumber == 19)
+        if (tetromino.row + 4 == 19)
         {
+            cout << "inside: tetromino.row + 4 == 19" << endl;
             return true;
         }
         return false;
@@ -176,13 +177,6 @@ public:
         speed = 1;
         selectPeice();
     }
-
-    // ~__engine__()
-    // {
-    //     delete[] & playground;
-    //     delete[] & landed;
-    //     delete[] & tetromino;
-    // }
 
     void refresh()
     {

@@ -4,7 +4,6 @@ using namespace std;
 
 void mainLoop(__engine__ &server)
 {
-    server.selectPeice();
     while (!server.isBottomCollision())
     {
         cout << server.tetromino.row << " " << server.tetromino.column << endl;
@@ -17,6 +16,10 @@ void mainLoop(__engine__ &server)
         server.refresh();
         server.run();
     }
+    server.landed.update(server.playground);
+    server.selectPeice();
+    server.tetromino.row = 0;
+    server.tetromino.column = 2;
 }
 
 int main()
@@ -25,6 +28,9 @@ int main()
     while (true)
     {
         mainLoop(server);
+        cout << endl
+             << "Its landed" << endl;
+        server.landed.appear();
     }
     return 0;
 }

@@ -9,11 +9,15 @@ private:
     int **screen;
 
 public:
-    void update(__screen__ tempScreen)
+    void update(__screen__ &tempScreen)
     {
+        // screen = tempScreen;
         for (int tempScreenRowArrow = 0; tempScreenRowArrow < ROWS; tempScreenRowArrow++)
         {
-            screen[tempScreenRowArrow] = tempScreen[tempScreenRowArrow];
+            *screen[tempScreenRowArrow] = *tempScreen[tempScreenRowArrow];
+            // for (int tempScreenColArrow = 0; tempScreenColArrow < COLS; tempScreenColArrow++)
+            // {
+            // }
         }
     }
 
