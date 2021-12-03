@@ -4,5 +4,5 @@ class L : public shape
 {
 public:
     L(int *);
-    void makeShape();
+    int *makeShape();
 };

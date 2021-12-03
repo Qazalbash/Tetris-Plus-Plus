@@ -17,6 +17,7 @@ GridLogic::GridLogic(const int R, const int C)
     initShapeGrid();
     printShapeGrid();
     makeShapeI();
+    tetromino->makeShape();
 
     // the required rectangles for printing the grid
     srcRect = {244, 384, 33, 33};
@@ -154,6 +155,7 @@ bool GridLogic::moveShapeDown()
         cout << "updating the grid" << endl;
         updateGrid();
         initShapeGrid();
+        selectShape();
         // can make different objects here
         return false;
     }

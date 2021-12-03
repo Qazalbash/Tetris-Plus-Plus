@@ -2,7 +2,7 @@
 
 L::L(int *shape_grid_) : shape::shape(shape_grid_) {}
 
-void L::makeShape()
+int *L::makeShape()
 {
     for (int i = 0; i < SHAPE_ROWS; i++)
     {
@@ -18,4 +18,5 @@ void L::makeShape()
             }
         }
     }
+    return shape_grid;
 }

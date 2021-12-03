@@ -2,7 +2,7 @@
 
 J::J(int *shape_grid_) : shape::shape(shape_grid_) {}
 
-void J::makeShape()
+int *J::makeShape()
 {
     for (int i = 0; i < SHAPE_ROWS; i++)
     {
@@ -18,4 +18,5 @@ void J::makeShape()
             }
         }
     }
+    return shape_grid;
 }

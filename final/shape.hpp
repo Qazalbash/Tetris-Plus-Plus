@@ -11,5 +11,5 @@ protected:
 public:
     shape(int *);
     void rotateShape();
-    virtual void makeShape() = 0;
+    virtual int *makeShape();
 };

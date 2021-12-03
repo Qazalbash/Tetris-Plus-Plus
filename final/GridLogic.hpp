@@ -3,14 +3,14 @@
 #include <ctime>
 #include <iostream>
 
-// #include "I.cpp"
-// #include "T.cpp"
-// #include "J.cpp"
-// #include "L.cpp"
-// #include "O.cpp"
-// #include "S.cpp"
-// #include "Z.cpp"
-#include "shape.hpp"
+#include "I.hpp"
+// #include "T.hpp"
+// #include "J.hpp"
+// #include "L.hpp"
+// #include "O.hpp"
+// #include "S.hpp"
+// #include "Z.hpp"
+// #include "shape.cpp"
 using namespace std;
 
 class GridLogic

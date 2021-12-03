@@ -140,6 +140,7 @@ void Game::drawMainScreenButtons()
 	// First drawing Img Tet
 	SDL_Rect sRect = {176, 90, 144, 95};
 	SDL_Rect mRect = {370, 180, 270, 200};
+	// SDL_Rect mRect = {370, 180, 20, 20};
 
 	SDL_RenderCopy(gRenderer, assets, &sRect, &mRect);
 

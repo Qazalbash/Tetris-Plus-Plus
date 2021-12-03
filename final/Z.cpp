@@ -2,7 +2,7 @@
 
 Z::Z(int *shape_grid_) : shape::shape(shape_grid_) {}
 
-void Z::makeShape()
+int *Z::makeShape()
 {
     for (int i = 0; i < SHAPE_ROWS; i++)
     {
@@ -18,4 +18,5 @@ void Z::makeShape()
             }
         }
     }
+    return shape_grid;
 }

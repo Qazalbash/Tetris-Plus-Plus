@@ -2,7 +2,7 @@
 
 O::O(int *shape_grid_) : shape::shape(shape_grid_) {}
 
-void O::makeShape()
+int *O::makeShape()
 {
     for (int i = 0; i < SHAPE_ROWS; i++)
     {
@@ -18,4 +18,5 @@ void O::makeShape()
             }
         }
     }
+    return shape_grid;
 }

@@ -1,6 +1,15 @@
 #include "shape.hpp"
 
-shape::shape(int *shape_grid_) : shape_grid(shape_grid_) {}
+shape::shape(int *shape_grid_) : shape_grid(shape_grid_)
+{
+    for (int i = 0; i < SHAPE_ROWS; i++)
+    {
+        for (int j = 0; j < SHAPE_COLS; j++)
+        {
+            *(shape_grid + i * SHAPE_COLS + j) = 0;
+        }
+    }
+}
 // {
 //     shape_grid = shape_grid_;
 // }
