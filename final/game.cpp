@@ -186,6 +186,7 @@ SDL_Texture *Game::loadTexture(std::string path)
 void Game::run()
 {
 	bool quit = false;
+	bool parity;
 	SDL_Event e;
 
 	TetrisMania tetrismania(gRenderer, assets, T_ROWS, T_COLS);
@@ -218,7 +219,7 @@ void Game::run()
 
 			else if (e.type == SDL_KEYDOWN)
 			{
-				if (e.key.keysym.sym == SDLK_SPACE)
+				if (e.key.keysym.sym == SDLK_UP)
 				{
 					tetrismania.rotateShape();
 				}
@@ -234,6 +235,10 @@ void Game::run()
 				{
 					tetrismania.slideShapeDown();
 				}
+				else if (e.type == SDLK_ESCAPE)
+				{
+					quit = true;
+				}
 			}
 		}
 
@@ -247,7 +252,11 @@ void Game::run()
 		}
 		else if (cureent_screen == 1)
 		{
-			tetrismania.drawObjects();
+			parity = tetrismania.drawObjects();
+			// if (!parity)
+			// {
+			// 	quit = true;
+			// }
 		}
 
 		// tetrismania.drawObjects();

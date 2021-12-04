@@ -9,15 +9,20 @@ GridLogic::GridLogic(const int R, const int C)
     grid = new int[R * C];
     shape_grid = new int[SHAPE_COLS * SHAPE_ROWS];
 
-    // tetromino = new I(shape_grid);
+    // tetromino(shape_grid);
 
     initGrid();
     printGrid();
 
     initShapeGrid();
+
+    // tetromino = {&shape_grid};
+    cout << "before: shape_grid = tetromino.makeShapeI();" << endl;
+    // shape_grid = tetromino.makeShapeI();
     printShapeGrid();
+    // tetromino(shape_grid);
+    // tetromino.makeShapeI();
     makeShapeI();
-    tetromino->makeShape();
 
     // the required rectangles for printing the grid
     srcRect = {244, 384, 33, 33};
@@ -163,37 +168,101 @@ bool GridLogic::moveShapeDown()
 
 void GridLogic::selectShape()
 {
+    cout << "before selection" << endl;
     srand((unsigned)time(0));
     int secretNumber = rand() % 7;
+    cout << "after randome" << endl;
+    cout << secretNumber << endl;
+    // int secretNumber = 3;
+    // if (secretNumber == 0)
+    // {
+    //     cout << "Inside secretnumber 0" << endl;
+    //     shape_grid = tetromino.makeShapeI();
+    //     cout << "end of secretnumber 0" << endl;
+    // }
+    // else if (secretNumber == 1)
+    // {
+    //     cout << "Inside secretnumber 1" << endl;
+    //     shape_grid = tetromino.makeShapeT();
+    //     cout << "end of secretnumber 1" << endl;
+    // }
+    // else if (secretNumber == 2)
+    // {
+    //     cout << "Inside secretnumber 2" << endl;
+    //     shape_grid = tetromino.makeShapeJ();
+    //     cout << "end of secretnumber 2" << endl;
+    // }
+    // else if (secretNumber == 3)
+    // {
+    //     cout << "Inside secretnumber 3" << endl;
+    //     shape_grid = tetromino.makeShapeL();
+    //     cout << "end of secretnumber 3" << endl;
+    // }
+    // else if (secretNumber == 4)
+    // {
+    //     cout << "Inside secretnumber 4" << endl;
+    //     shape_grid = tetromino.makeShapeO();
+    //     cout << "end of secretnumber 4" << endl;
+    // }
+    // else if (secretNumber == 5)
+    // {
+    //     cout << "Inside secretnumber 5" << endl;
+    //     shape_grid = tetromino.makeShapeS();
+    //     cout << "end of secretnumber 5" << endl;
+    // }
+    // else if (secretNumber == 6)
+    // {
+    //     cout << "Inside secretnumber 6" << endl;
+    //     shape_grid = tetromino.makeShapeZ();
+    //     cout << "end of secretnumber 6" << endl;
+    // }
+
     switch (secretNumber)
     {
+        cout << "Initializing selection" << endl;
     case 0:
+        // initShapeGrid();
+        // shape_grid = tetromino.makeShapeI();
         makeShapeI();
         break;
     case 1:
+        // initShapeGrid();
+        // shape_grid = tetromino.makeShapeT();
         makeShapeT();
         break;
     case 2:
+        // initShapeGrid();
+        // shape_grid = tetromino.makeShapeJ();
         makeShapeJ();
         break;
     case 3:
+        // initShapeGrid();
+        // shape_grid = tetromino.makeShapeL();
         makeShapeL();
         break;
     case 4:
+        // initShapeGrid();
+        // shape_grid = tetromino.makeShapeO();
         makeShapeO();
         break;
     case 5:
+        // initShapeGrid();
+        // shape_grid = tetromino.makeShapeS();
         makeShapeS();
         break;
     case 6:
+        // initShapeGrid();
+        // shape_grid = tetromino.makeShapeZ();
         makeShapeZ();
         break;
     }
+    cout << "after selecting shape" << endl;
 }
 
 void GridLogic::updateGrid()
 {
     // writing the shape to grid
+    cout << "Inside updateGrid()" << endl;
     int shapeCoord = 0;
     for (int i = ((shapeBaseRect.y - baseY) / 25); i < ((shapeBaseRect.y - baseY) / 25) + SHAPE_ROWS; i++)
     {
@@ -209,6 +278,7 @@ void GridLogic::updateGrid()
                 *(grid + i * COLS + j) = 1;
         }
     }
+    cout << "after updating grid" << endl;
 
     // checing if any row in the grid is full
     bool flag = false;
@@ -233,6 +303,7 @@ void GridLogic::updateGrid()
             i--;
         }
     }
+    cout << "after checking block buster" << endl;
 }
 
 void GridLogic::removeGridRow(int rowIndex)
@@ -446,6 +517,7 @@ void GridLogic::makeShapeZ()
 
 void GridLogic::rotateShape()
 {
+    // shape_grid = tetromino.rotateShape();
     cout << "Rotating the Shape" << endl;
     int *temp = new int[SHAPE_COLS * SHAPE_ROWS];
 

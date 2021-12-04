@@ -3,14 +3,14 @@
 #include <ctime>
 #include <iostream>
 
-#include "I.hpp"
+// #include "I.hpp"
 // #include "T.hpp"
 // #include "J.hpp"
 // #include "L.hpp"
 // #include "O.hpp"
 // #include "S.hpp"
 // #include "Z.hpp"
-// #include "shape.cpp"
+#include "shape.hpp"
 using namespace std;
 
 class GridLogic
@@ -33,8 +33,6 @@ private:
 
     int *grid;
     int *shape_grid;
-
-    shape *tetromino;
 
 public:
     GridLogic(const int R, const int C);

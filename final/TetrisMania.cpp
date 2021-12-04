@@ -1,15 +1,17 @@
 #include "TetrisMania.hpp"
 
-void TetrisMania::drawObjects()
+bool TetrisMania::drawObjects()
 {
     bool parity = gridLogic->moveShapeDown();
-    if (parity)
-    {
-    }
+    // if (!parity)
+    // {
+    //     SDL_Quit();
+    //     // return parity;
+    // }
     // Drawing all objects here.
     gridLogic->drawGrid(gRenderer, assets);
     gridLogic->drawShapeGrid(gRenderer, assets);
-
+    return parity;
     // gridLogic->printShapeGrid();
 }
 

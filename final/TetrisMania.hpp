@@ -15,7 +15,7 @@ class TetrisMania
 
 public:
     TetrisMania(SDL_Renderer *gr, SDL_Texture *asset, const int r, const int c);
-    void drawObjects();
+    bool drawObjects();
 
     void slideShapeDown();
     void randomBlock();

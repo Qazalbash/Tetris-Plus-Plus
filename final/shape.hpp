@@ -9,7 +9,17 @@ protected:
     int SHAPE_COLS;
 
 public:
-    shape(int *);
-    void rotateShape();
-    virtual int *makeShape();
+    shape(int, int);
+    int *rotateShape();
+    // virtual int *makeShape();
+
+    int *makeShapeI();
+    int *makeShapeT();
+    int *makeShapeJ();
+    int *makeShapeL();
+    int *makeShapeO();
+    int *makeShapeS();
+    int *makeShapeZ();
+
+    // ~shape();
 };
