@@ -7,7 +7,6 @@ using namespace std;
 
 class TetrisMania
 {
-
     GridLogic *gridLogic;
 
     SDL_Renderer *gRenderer;
@@ -24,6 +23,4 @@ public:
     void rotateShape();
     void moveShapeRight();
     void moveeShapeLeft();
-
-    void printGrid();
 };

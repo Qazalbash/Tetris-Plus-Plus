@@ -94,7 +94,6 @@ bool Game::init()
 			}
 		}
 	}
-
 	return success;
 }
 
@@ -191,11 +190,8 @@ void Game::run()
 
 	TetrisMania tetrismania(gRenderer, assets, T_ROWS, T_COLS);
 
-	cout << "After tetrismania object is created" << endl;
-
 	while (!quit)
 	{
-
 		// Handle events on queue
 		while (SDL_PollEvent(&e) != 0)
 		{
@@ -235,7 +231,7 @@ void Game::run()
 				{
 					tetrismania.slideShapeDown();
 				}
-				else if (e.type == SDLK_ESCAPE)
+				else if (e.key.keysym.sym == SDLK_ESCAPE)
 				{
 					quit = true;
 				}
@@ -253,18 +249,8 @@ void Game::run()
 		else if (cureent_screen == 1)
 		{
 			parity = tetrismania.drawObjects();
-			// if (!parity)
-			// {
-			// 	quit = true;
-			// }
 		}
 
-		// tetrismania.drawObjects();
-
-		// tetrismania.printGrid(gRenderer,gTexture);
-
-		// Score("Pakistan");
-		//****************************************************************
 		SDL_RenderPresent(gRenderer); // displays the updated renderer
 
 		SDL_Delay(200); // causes sdl engine to delay for specified miliseconds

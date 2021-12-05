@@ -3,16 +3,10 @@
 bool TetrisMania::drawObjects()
 {
     bool parity = gridLogic->moveShapeDown();
-    // if (!parity)
-    // {
-    //     SDL_Quit();
-    //     // return parity;
-    // }
     // Drawing all objects here.
     gridLogic->drawGrid(gRenderer, assets);
     gridLogic->drawShapeGrid(gRenderer, assets);
     return parity;
-    // gridLogic->printShapeGrid();
 }
 
 void TetrisMania::drawMainScreenButtons()
@@ -36,26 +30,17 @@ void TetrisMania::drawMainScreenButtons()
     SDL_RenderCopy(gRenderer, assets, &sRect, &mRect);
 }
 
-void TetrisMania::printGrid()
-{
-    // gridLogic->printGrid();
-    // gridLogic->drawGrid(gRenderer, assets);
-}
-
 bool TetrisMania::isReached()
 {
     return false;
 }
 
 // generates random blocks.
-void TetrisMania::randomBlock()
-{
-}
+void TetrisMania::randomBlock() {}
 
 // Function used to rotate individual blocks.
 void TetrisMania::rotateShape()
 {
-
     gridLogic->rotateShape();
     SDL_Delay(50);
 }
@@ -75,15 +60,12 @@ void TetrisMania::moveShapeRight()
 // Function used tomove block to the left and right.
 void TetrisMania::slideShapeDown()
 {
-
     while (gridLogic->moveShapeDown())
     {
-        /* code */
     }
 }
 
 TetrisMania::TetrisMania(SDL_Renderer *gr, SDL_Texture *asset, const int r, const int c) : gRenderer(gr), assets(asset)
 {
     gridLogic = new GridLogic(r, c);
-    cout << "After the object is created" << endl;
 }
