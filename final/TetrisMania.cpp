@@ -2,9 +2,13 @@
 
 bool TetrisMania::drawObjects()
 {
+    /*
+    Moves shapes down and return true when grid is full
+    */
     bool parity = gridLogic->moveShapeDown();
-    // Drawing all objects here.
+    // draw grids
     gridLogic->drawGrid(gRenderer, assets);
+    // draw shape
     gridLogic->drawShapeGrid(gRenderer, assets);
     return parity;
 }
@@ -41,7 +45,7 @@ void TetrisMania::randomBlock() {}
 // Function used to rotate individual blocks.
 void TetrisMania::rotateShape()
 {
-    gridLogic->rotateShape();
+    ~*gridLogic;
     SDL_Delay(50);
 }
 
