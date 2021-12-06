@@ -14,9 +14,6 @@ GridLogic::GridLogic(const int R, const int C)
 
     initGrid();
 
-    // making shape object
-    // block = new shape{shape_grid, SHAPE_SIZE};
-
     // selecting shape
 
     selectShape();

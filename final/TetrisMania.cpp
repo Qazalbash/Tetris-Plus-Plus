@@ -6,10 +6,6 @@ bool TetrisMania::drawObjects()
     Moves shapes down and return true when grid is full
     */
     bool parity = gridLogic->moveShapeDown();
-    if (parity == 0)
-    {
-        return false;
-    }
     // draw grids
     gridLogic->drawGrid(gRenderer, assets);
     // draw shape

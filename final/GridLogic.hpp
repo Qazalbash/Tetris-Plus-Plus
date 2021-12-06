@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include "shape.hpp"
 
 using namespace std;
 
