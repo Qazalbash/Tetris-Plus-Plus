@@ -55,7 +55,7 @@ public:
 
     void selectShape();
 
-    void rotateShape();
+    void operator~();
     void moveShapeLeft();
     void moveShapeRight();
 };

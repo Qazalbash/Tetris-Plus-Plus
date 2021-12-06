@@ -282,6 +282,10 @@ void Game::run()
 		else if (cureent_screen == 3)
 		{
 			parity = tetrismania.drawObjects();
+			if (!parity)
+			{
+				quit = true;
+			}
 		}
 
 		SDL_RenderPresent(gRenderer); // displays the updated renderer
