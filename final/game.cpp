@@ -91,6 +91,12 @@ bool Game::init()
 					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
 					success = false;
 				}
+				if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+                {
+                    printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+                    success = false;
+                }
+
 			}
 		}
 	}
@@ -114,6 +120,12 @@ bool Game::loadMedia(bool check)
 		printf("Unable to run due to error: %s\n", SDL_GetError());
 		success = false;
 	}
+	gMusic = Mix_LoadMUS( "bg_music.wav" );
+    if( gMusic == NULL )
+    {
+        printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
+        success = false;
+    }
 	return success;
 }
 
@@ -123,6 +135,9 @@ void Game::close()
 	SDL_DestroyTexture(assets);
 	assets = NULL;
 	SDL_DestroyTexture(gTexture);
+	//Free Music
+	Mix_FreeMusic( gMusic );
+    gMusic = NULL;
 
 	// Destroy window
 	SDL_DestroyRenderer(gRenderer);
@@ -132,29 +147,11 @@ void Game::close()
 	// Quit SDL subsystems
 	IMG_Quit();
 	SDL_Quit();
+	Mix_Quit();
+    IMG_Quit();
+    SDL_Quit();
 }
 
-void Game::drawMainScreenButtons()
-{
-	// First drawing Img Tet
-	SDL_Rect sRect = {176, 90, 144, 95};
-	SDL_Rect mRect = {370, 180, 270, 200};
-	// SDL_Rect mRect = {370, 180, 20, 20};
-
-	SDL_RenderCopy(gRenderer, assets, &sRect, &mRect);
-
-	// Second drawing start Game
-	sRect = {180, 255, 140, 34};
-	mRect = {400, 500, 200, 80};
-
-	SDL_RenderCopy(gRenderer, assets, &sRect, &mRect);
-
-	// Third drawing the Exit button
-	sRect = {3, 0, 93, 40};
-	mRect = {15, 10, 125, 50};
-
-	SDL_RenderCopy(gRenderer, assets, &sRect, &mRect);
-}
 
 SDL_Texture *Game::loadTexture(std::string path)
 {
@@ -182,11 +179,51 @@ SDL_Texture *Game::loadTexture(std::string path)
 
 	return newTexture;
 }
+void Game::page_selection_on_click(int xMouse, int yMouse){
+	if (xMouse > 400 && xMouse < 600 && yMouse > 731 && yMouse < 802 && cureent_screen==0) 
+		{
+			cureent_screen = 1;
+			gTexture = loadTexture("homepage.png");
+		}
+	else if (xMouse > 17 && xMouse < 133 && yMouse > 17 && yMouse < 53 && cureent_screen==0) 
+		{
+			close();
+		}
+	else if (xMouse > 848 && xMouse < 960 && yMouse > 636 && yMouse < 814 && cureent_screen==1)
+		{
+			cureent_screen = 2;
+			gTexture = loadTexture("instructions.png");;
+		}
+	else if (xMouse > 4 && xMouse < 182 && yMouse > 8 && yMouse < 86 && cureent_screen==2)
+		{
+			cureent_screen = 1;
+			gTexture = loadTexture("homepage.png");
+		}
+	else if (xMouse > 275 && xMouse < 368 && yMouse > 388 && yMouse < 686 && cureent_screen==1)
+		{
+			cureent_screen = 3;
+			blit();
+		}
+	else if (xMouse > 428 && xMouse < 589 && yMouse > 359 && yMouse < 686 && cureent_screen==1)
+		{
+			cureent_screen = 3;
+			blit();
+		}
+	else if (xMouse > 637 && xMouse < 745 && yMouse > 307 && yMouse < 686 && cureent_screen==1)
+		{
+			cureent_screen = 3;
+			blit();
+		}
+}
+
+
+
 void Game::run()
 {
 	bool quit = false;
 	bool parity;
 	SDL_Event e;
+	Mix_PlayMusic(gMusic, -1);
 
 	TetrisMania tetrismania(gRenderer, assets, T_ROWS, T_COLS);
 
@@ -205,12 +242,8 @@ void Game::run()
 			{
 				int xMouse, yMouse;
 				SDL_GetMouseState(&xMouse, &yMouse);
-
-				if (xMouse > 400 && xMouse < 600 && yMouse > 500 && yMouse < 580)
-				{
-					cureent_screen = 1;
-					blit();
-				}
+				cout<<"X: "<<xMouse<<" Y: "<<yMouse<<endl;
+				page_selection_on_click(xMouse,yMouse);
 			}
 
 			else if (e.type == SDL_KEYDOWN)
@@ -246,7 +279,7 @@ void Game::run()
 		{
 			tetrismania.drawMainScreenButtons();
 		}
-		else if (cureent_screen == 1)
+		else if (cureent_screen == 3)
 		{
 			parity = tetrismania.drawObjects();
 		}

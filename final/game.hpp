@@ -30,6 +30,9 @@ class Game
     // the main rendrer
     SDL_Renderer *gRenderer = NULL;
 
+    //The music that will be played
+    Mix_Music *gMusic = NULL;
+
     // Current displayed texture
     SDL_Texture *gTexture = NULL;
 
@@ -49,6 +52,5 @@ public:
     void close();
     SDL_Texture *loadTexture(std::string path);
     void run();
-
-    void drawMainScreenButtons();
+    void page_selection_on_click(int, int);
 };

@@ -107,8 +107,8 @@ bool GridLogic::moveShapeDown()
         // updating the grid
         updateGrid();
         initShapeGrid();
-        selectShape();
         // can make different objects here
+        selectShape();
         return false;
     }
 }

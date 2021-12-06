@@ -13,13 +13,13 @@ void TetrisMania::drawMainScreenButtons()
 {
     // First drawing Img Tet
     SDL_Rect sRect = {176, 90, 144, 95};
-    SDL_Rect mRect = {370, 180, 270, 200};
+    SDL_Rect mRect = {370, 290, 270, 200};
 
     SDL_RenderCopy(gRenderer, assets, &sRect, &mRect);
 
     // Second drawing start Game
     sRect = {180, 255, 140, 34};
-    mRect = {400, 500, 200, 80};
+    mRect = {400, 726, 200, 80};
 
     SDL_RenderCopy(gRenderer, assets, &sRect, &mRect);
 
