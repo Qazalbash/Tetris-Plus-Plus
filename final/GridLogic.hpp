@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include "shape.hpp"
 
 using namespace std;
 
@@ -10,8 +11,8 @@ class GridLogic
 private:
     int ROWS;
     int COLS;
-    int SHAPE_COLS = 5;
-    int SHAPE_ROWS = 5;
+
+    int SHAPE_SIZE = 5;
 
     const int baseX = 125; // the x coordinate from where the grid is drawn
     const int baseY = 50;  // the y coordinate from where the grid is drawn
@@ -26,8 +27,11 @@ private:
     int *grid;
     int *shape_grid;
 
+    // shape *block;
+
 public:
     GridLogic(const int R, const int C);
+    // ~GridLogic();
 
     void initShapeGrid();
     void printShapeGrid();
@@ -58,4 +62,6 @@ public:
     void operator~();
     void moveShapeLeft();
     void moveShapeRight();
+
+    bool running();
 };

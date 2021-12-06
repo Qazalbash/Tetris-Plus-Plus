@@ -10,9 +10,12 @@ GridLogic::GridLogic(const int R, const int C)
     COLS = C;
 
     grid = new int[R * C];
-    shape_grid = new int[SHAPE_COLS * SHAPE_ROWS];
+    shape_grid = new int[SHAPE_SIZE * SHAPE_SIZE];
 
     initGrid();
+
+    // making shape object
+    // block = new shape{shape_grid, SHAPE_SIZE};
 
     // selecting shape
 
@@ -32,11 +35,11 @@ void GridLogic::initShapeGrid()
 Initializes the shapegrid as 0 values
 */
 {
-    for (int i = 0; i < SHAPE_ROWS; i++)
+    for (int i = 0; i < SHAPE_SIZE; i++)
     {
-        for (int j = 0; j < SHAPE_COLS; j++)
+        for (int j = 0; j < SHAPE_SIZE; j++)
         {
-            *(shape_grid + i * SHAPE_COLS + j) = 0;
+            *(shape_grid + i * SHAPE_SIZE + j) = 0;
         }
     }
     shapeBaseRect = {baseX + int(COLS / 2) * 25, 0, 25, 25};
@@ -83,11 +86,11 @@ This function itterates over shapegrid and creates a single block where it is 1.
 It translates the squares by moverRect vector.
 */
 {
-    for (int i = 0; i < SHAPE_ROWS; i++)
+    for (int i = 0; i < SHAPE_SIZE; i++)
     {
-        for (int j = 0; j < SHAPE_COLS; j++)
+        for (int j = 0; j < SHAPE_SIZE; j++)
         {
-            int value = *(shape_grid + i * SHAPE_COLS + j);
+            int value = *(shape_grid + i * SHAPE_SIZE + j);
 
             if (value == 1)
             {
@@ -102,7 +105,7 @@ It translates the squares by moverRect vector.
 bool GridLogic::moveShapeDown()
 {
     int shapeBottomIndex = 0; // the index of the first one from the bottom side
-    for (int i = SHAPE_ROWS * SHAPE_COLS - 1; i >= 0; i--)
+    for (int i = SHAPE_SIZE * SHAPE_SIZE - 1; i >= 0; i--)
     {
         if (*(shape_grid + i) == 1)
         {
@@ -168,9 +171,9 @@ void GridLogic::updateGrid()
 {
     // writing the shape to grid
     int shapeCoord = 0;
-    for (int i = ((shapeBaseRect.y - baseY) / 25); i < ((shapeBaseRect.y - baseY) / 25) + SHAPE_ROWS; i++)
+    for (int i = ((shapeBaseRect.y - baseY) / 25); i < ((shapeBaseRect.y - baseY) / 25) + SHAPE_SIZE; i++)
     {
-        for (int j = ((shapeBaseRect.x - baseX) / 25); j < ((shapeBaseRect.x - baseX) / 25) + SHAPE_COLS; j++)
+        for (int j = ((shapeBaseRect.x - baseX) / 25); j < ((shapeBaseRect.x - baseX) / 25) + SHAPE_SIZE; j++)
         {
             int shapeValue = *(shape_grid + shapeCoord);
             shapeCoord++;
@@ -223,9 +226,9 @@ bool GridLogic::isCollidingDown()
 // return true when two blocks are colliding
 {
     int shapeCoord = 0;
-    for (int i = ((shapeBaseRect.y - baseY) / 25); i < ((shapeBaseRect.y - baseY) / 25) + SHAPE_ROWS; i++)
+    for (int i = ((shapeBaseRect.y - baseY) / 25); i < ((shapeBaseRect.y - baseY) / 25) + SHAPE_SIZE; i++)
     {
-        for (int j = ((shapeBaseRect.x - baseX) / 25); j < ((shapeBaseRect.x - baseX) / 25) + SHAPE_COLS; j++)
+        for (int j = ((shapeBaseRect.x - baseX) / 25); j < ((shapeBaseRect.x - baseX) / 25) + SHAPE_SIZE; j++)
         {
             int shapeValue = *(shape_grid + shapeCoord); // block square value
             shapeCoord++;
@@ -246,9 +249,9 @@ bool GridLogic::isCollidingRight()
 // returns true if shape is colliding on right with other blocks or the right most walls
 {
     int shapeCoord = 0;
-    for (int i = ((shapeBaseRect.y - baseY) / 25); i < ((shapeBaseRect.y - baseY) / 25) + SHAPE_ROWS; i++)
+    for (int i = ((shapeBaseRect.y - baseY) / 25); i < ((shapeBaseRect.y - baseY) / 25) + SHAPE_SIZE; i++)
     {
-        for (int j = ((shapeBaseRect.x - baseX) / 25); j < ((shapeBaseRect.x - baseX) / 25) + SHAPE_COLS; j++)
+        for (int j = ((shapeBaseRect.x - baseX) / 25); j < ((shapeBaseRect.x - baseX) / 25) + SHAPE_SIZE; j++)
         {
             int shapeValue = *(shape_grid + shapeCoord);
             shapeCoord++;
@@ -273,9 +276,9 @@ bool GridLogic::isCollidingLeft()
 // returns true if shape is colliding on right with other blocks or the left most walls
 {
     int shapeCoord = 0;
-    for (int i = ((shapeBaseRect.y - baseY) / 25); i < ((shapeBaseRect.y - baseY) / 25) + SHAPE_ROWS; i++)
+    for (int i = ((shapeBaseRect.y - baseY) / 25); i < ((shapeBaseRect.y - baseY) / 25) + SHAPE_SIZE; i++)
     {
-        for (int j = ((shapeBaseRect.x - baseX) / 25); j < ((shapeBaseRect.x - baseX) / 25) + SHAPE_COLS; j++)
+        for (int j = ((shapeBaseRect.x - baseX) / 25); j < ((shapeBaseRect.x - baseX) / 25) + SHAPE_SIZE; j++)
         {
             int shapeValue = *(shape_grid + shapeCoord);
             shapeCoord++;
@@ -299,12 +302,12 @@ bool GridLogic::isCollidingLeft()
 void GridLogic::makeShapeI()
 // making the shape I, setting grid 1 on the places where it makes the required shape
 {
-    for (int i = 0; i < SHAPE_ROWS; i++)
+    for (int i = 0; i < SHAPE_SIZE; i++)
     {
-        for (int j = 0; j < SHAPE_COLS; j++)
+        for (int j = 0; j < SHAPE_SIZE; j++)
         {
             // turing shape grid 1 at the logic on right hand side
-            *(shape_grid + i * SHAPE_COLS + j) = (j == 2);
+            *(shape_grid + i * SHAPE_SIZE + j) = (j == 2);
         }
     }
 }
@@ -312,12 +315,12 @@ void GridLogic::makeShapeI()
 void GridLogic::makeShapeT()
 // making the shape T, setting grid 1 on the places where it makes the required shape
 {
-    for (int i = 0; i < SHAPE_ROWS; i++)
+    for (int i = 0; i < SHAPE_SIZE; i++)
     {
-        for (int j = 0; j < SHAPE_COLS; j++)
+        for (int j = 0; j < SHAPE_SIZE; j++)
         {
             // turing shape grid 1 at the logic on right hand side
-            *(shape_grid + i * SHAPE_COLS + j) = ((i == 1 && j == 2) || (i == 2 && (j == 1 || j == 2 || j == 3)));
+            *(shape_grid + i * SHAPE_SIZE + j) = ((i == 1 && j == 2) || (i == 2 && (j == 1 || j == 2 || j == 3)));
         }
     }
 }
@@ -325,12 +328,12 @@ void GridLogic::makeShapeT()
 void GridLogic::makeShapeJ()
 // making the shape J, setting grid 1 on the places where it makes the required shape
 {
-    for (int i = 0; i < SHAPE_ROWS; i++)
+    for (int i = 0; i < SHAPE_SIZE; i++)
     {
-        for (int j = 0; j < SHAPE_COLS; j++)
+        for (int j = 0; j < SHAPE_SIZE; j++)
         {
             // turing shape grid 1 at the logic on right hand side
-            *(shape_grid + i * SHAPE_COLS + j) = ((i == 1 && j == 1) || (i == 2 && (j == 1 || j == 2 || j == 3)));
+            *(shape_grid + i * SHAPE_SIZE + j) = ((i == 1 && j == 1) || (i == 2 && (j == 1 || j == 2 || j == 3)));
         }
     }
 }
@@ -338,12 +341,12 @@ void GridLogic::makeShapeJ()
 void GridLogic::makeShapeL()
 // making the shape L, setting grid 1 on the places where it makes the required shape
 {
-    for (int i = 0; i < SHAPE_ROWS; i++)
+    for (int i = 0; i < SHAPE_SIZE; i++)
     {
-        for (int j = 0; j < SHAPE_COLS; j++)
+        for (int j = 0; j < SHAPE_SIZE; j++)
         {
             // turing shape grid 1 at the logic on right hand side
-            *(shape_grid + i * SHAPE_COLS + j) = ((i == 1 && j == 3) || (i == 2 && (j == 1 || j == 2 || j == 3)));
+            *(shape_grid + i * SHAPE_SIZE + j) = ((i == 1 && j == 3) || (i == 2 && (j == 1 || j == 2 || j == 3)));
         }
     }
 }
@@ -351,12 +354,12 @@ void GridLogic::makeShapeL()
 void GridLogic::makeShapeO()
 // making the shape O, setting grid 1 on the places where it makes the required shape
 {
-    for (int i = 0; i < SHAPE_ROWS; i++)
+    for (int i = 0; i < SHAPE_SIZE; i++)
     {
-        for (int j = 0; j < SHAPE_COLS; j++)
+        for (int j = 0; j < SHAPE_SIZE; j++)
         {
             // turing shape grid 1 at the logic on right hand side
-            *(shape_grid + i * SHAPE_COLS + j) = ((i == 1 || i == 2) && (j == 1 || j == 2));
+            *(shape_grid + i * SHAPE_SIZE + j) = ((i == 1 || i == 2) && (j == 1 || j == 2));
         }
     }
 }
@@ -364,12 +367,12 @@ void GridLogic::makeShapeO()
 void GridLogic::makeShapeS()
 // making the shape S, setting grid 1 on the places where it makes the required shape
 {
-    for (int i = 0; i < SHAPE_ROWS; i++)
+    for (int i = 0; i < SHAPE_SIZE; i++)
     {
-        for (int j = 0; j < SHAPE_COLS; j++)
+        for (int j = 0; j < SHAPE_SIZE; j++)
         {
             // turing shape grid 1 at the logic on right hand side
-            *(shape_grid + i * SHAPE_COLS + j) = (((i == 1 || i == 2) && j == 2) || (i == 1 && j == 3) || (i == 2 && j == 1));
+            *(shape_grid + i * SHAPE_SIZE + j) = (((i == 1 || i == 2) && j == 2) || (i == 1 && j == 3) || (i == 2 && j == 1));
         }
     }
 }
@@ -377,12 +380,12 @@ void GridLogic::makeShapeS()
 void GridLogic::makeShapeZ()
 // making the shape Z, setting grid 1 on the places where it makes the required shape
 {
-    for (int i = 0; i < SHAPE_ROWS; i++)
+    for (int i = 0; i < SHAPE_SIZE; i++)
     {
-        for (int j = 0; j < SHAPE_COLS; j++)
+        for (int j = 0; j < SHAPE_SIZE; j++)
         {
             // turing shape grid 1 at the logic on right hand side
-            *(shape_grid + i * SHAPE_COLS + j) = (((i == 1 || i == 2) && j == 2) || (i == 1 && j == 1) || (i == 2 && j == 3));
+            *(shape_grid + i * SHAPE_SIZE + j) = (((i == 1 || i == 2) && j == 2) || (i == 1 && j == 1) || (i == 2 && j == 3));
         }
     }
 }
@@ -390,12 +393,12 @@ void GridLogic::makeShapeZ()
 void GridLogic::operator~()
 // rotates the shape when being called
 {
-    int *temp = new int[SHAPE_COLS * SHAPE_ROWS];
-    for (int blockRowArrow = 0; blockRowArrow < SHAPE_ROWS; blockRowArrow++)
+    int *temp = new int[SHAPE_SIZE * SHAPE_SIZE];
+    for (int blockRowArrow = 0; blockRowArrow < SHAPE_SIZE; blockRowArrow++)
     {
-        for (int blockColArrow = 0; blockColArrow < SHAPE_COLS; blockColArrow++)
+        for (int blockColArrow = 0; blockColArrow < SHAPE_SIZE; blockColArrow++)
         {
-            temp[(blockColArrow * SHAPE_COLS) + SHAPE_ROWS - 1 - blockRowArrow] = shape_grid[blockRowArrow * SHAPE_COLS + blockColArrow];
+            temp[(blockColArrow * SHAPE_SIZE) + SHAPE_SIZE - 1 - blockRowArrow] = shape_grid[blockRowArrow * SHAPE_SIZE + blockColArrow];
         }
     }
     delete shape_grid;
@@ -419,3 +422,10 @@ void GridLogic::moveShapeRight()
         shapeBaseRect.x += 25;
     }
 }
+
+// GridLogic::~GridLogic()
+// {
+//     // delete block;
+//     delete grid;
+//     delete shape_grid;
+// }
