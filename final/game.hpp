@@ -30,7 +30,7 @@ class Game
     // the main rendrer
     SDL_Renderer *gRenderer = NULL;
 
-    //The music that will be played
+    // The music that will be played
     Mix_Music *gMusic = NULL;
 
     // Current displayed texture
